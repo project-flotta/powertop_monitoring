@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/sibasishbehera/powertop_tunable_stats'
+make: Leaving directory '/home/sibasishbehera/powertop_tunable_stats'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
