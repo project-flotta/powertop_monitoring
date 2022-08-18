@@ -29,7 +29,19 @@ var (
 
 func main() {
 
-	err := container.StartPowetopContainer()
+	//pulling powerTop image from dockerhub
+	err := container.PullPowertopContainerImage()
+	if err != nil {
+		log.Printf("Failed to pull image")
+	}
+
+	for true {
+		//this will start and stop container for every 1 hour
+		err := container.LoopContainer()
+		if err != nil {
+			return
+		}
+	}
 
 	if err != nil {
 		log.Printf("Error in starting the container %v", err)

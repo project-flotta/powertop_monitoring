@@ -1,14 +1,16 @@
 package container
 
+import "C"
 import (
 	"context"
 	"fmt"
 	"github.com/containers/podman/v3/pkg/bindings"
 	"github.com/containers/podman/v3/pkg/bindings/containers"
 	"github.com/containers/podman/v3/pkg/bindings/images"
+	"github.com/containers/podman/v3/pkg/domain/entities"
 	"github.com/containers/podman/v3/pkg/specgen"
 	"log"
-	"os"
+	"time"
 )
 
 const (
@@ -37,13 +39,7 @@ func StartingPodmanSocket() *context.Context {
 	}
 	return &ctx
 }
-func StartPowetopContainer() error {
-	//pulling powerTop image from dockerhub
-	err := PullPowertopContainerImage()
-	if err != nil {
-		return err
-	}
-
+func StartPowetopContainer() (entities.ContainerCreateResponse, error) {
 	//creates a new OCI spec based on raw  image
 	specGen := specgen.NewSpecGenerator(rawImage, true)
 
@@ -53,7 +49,7 @@ func StartPowetopContainer() error {
 	specGen.Terminal = true
 
 	//validating the spec
-	err = specGen.Validate()
+	err := specGen.Validate()
 	if err != nil {
 		log.Fatal("spec not valid %v", err)
 	}
@@ -62,8 +58,8 @@ func StartPowetopContainer() error {
 	r, err := containers.CreateWithSpec(*ctx, specGen, nil)
 
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		log.Println(err)
+
 	}
 
 	// Container start
@@ -71,9 +67,24 @@ func StartPowetopContainer() error {
 	err = containers.Start(*ctx, r.ID, nil)
 	if err != nil {
 		log.Printf("Error in starting container %v", err)
+		return r, err
+	}
+	return r, nil
+}
+
+func LoopContainer() error {
+	r, err := StartPowetopContainer()
+	if err != nil {
 		return err
 	}
-	return nil
+	time.Sleep(3600 * time.Second)
+	err = StopContainer(r)
+	return err
+}
+
+func StopContainer(r entities.ContainerCreateResponse) error {
+	err := containers.Stop(*ctx, r.ID, nil)
+	return err
 }
 
 func PullPowertopContainerImage() error {
