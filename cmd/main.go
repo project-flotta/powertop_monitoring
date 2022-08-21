@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/project-flotta/powertop_container/pkg/container"
 	"log"
 	"strings"
 	"time"
@@ -18,52 +17,56 @@ import (
 )
 
 const (
-	path = "/home/sibasishbehera/powertop_stats.csv"
+	path = "/var/tmp/pwtp/powertop_report.csv"
 )
 
 var (
-	address     = flag.String("address", "0.0.0.0:8886", "bind address")
-	metricsPath = flag.String("metrics-path", "/metrics", "metrics path")
-	sysInfo     stats.SysInfo
+	address = flag.String(
+		"address",
+		"0.0.0.0:8886",
+		"bind address",
+	)
+	metricsPath = flag.String(
+		"metrics-path",
+		"/metrics",
+		"metrics path",
+	)
+	sysInfo stats.SysInfo
+	//mountpoint string
+	data [][]string
 )
 
 func main() {
 
-	//pulling powerTop image from dockerhub
-	err := container.PullPowertopContainerImage()
-	if err != nil {
-		log.Printf("Failed to pull image")
-	}
-
-	for true {
-		//this will start and stop container for every 1 hour
-		err := container.LoopContainer()
-		if err != nil {
-			return
-		}
-	}
-
-	if err != nil {
-		log.Printf("Error in starting the container %v", err)
-	}
-
 	flag.Parse()
 
 	//register the collector
-	err = prometheus.Register(version.NewCollector("powertop_tunable_exporter"))
+	err := prometheus.Register(version.NewCollector("powertop_tunable_exporter"))
 	if err != nil {
-		log.Fatalf("failed to register : %v", err)
+		log.Fatalf(
+			"failed to register : %v",
+			err,
+		)
 	}
 
 	if err != nil {
-		log.Fatalf("failed to create collector: %v", err)
+		log.Fatalf(
+			"failed to create collector: %v",
+			err,
+		)
 	}
 
 	//prometheus http handler
 	go func() {
-		http.Handle(*metricsPath, promhttp.Handler())
-		http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-			_, err = w.Write([]byte(`<html>}
+		http.Handle(
+			*metricsPath,
+			promhttp.Handler(),
+		)
+		http.HandleFunc(
+			"/",
+			func(w http.ResponseWriter, r *http.Request) {
+				_, err = w.Write(
+					[]byte(`<html>}
 	fmt.Println("exporter call over")
 }
 			<head><title>PowerTop Tunable Exporter</title></head>
@@ -71,44 +74,92 @@ func main() {
 			<h1>Tunable Exporter</h1>
 			<p><a href="` + *metricsPath + `">Metrics</a></p>
 			</body>
-			</html>`))
-			if err != nil {
-				log.Fatalf("failed to write response: %v", err)
-			}
-		})
+			</html>`),
+				)
+				if err != nil {
+					log.Fatalf(
+						"failed to write response: %v",
+						err,
+					)
+				}
+			},
+		)
 
-		err = http.ListenAndServe(*address, nil)
+		err = http.ListenAndServe(
+			*address,
+			nil,
+		)
 		if err != nil {
-			log.Fatalf("failed to bind on %s: %v", *address, err)
+			log.Fatalf(
+				"failed to bind on %s: %v",
+				*address,
+				err,
+			)
 		}
 		fmt.Println("exporter call over")
 	}()
 
 	//Prometheus Metrics using Gauge
-	pt_tu_count := promauto.NewGauge(prometheus.GaugeOpts{
-		Name: "powertop_tunables_count",
-		Help: "counts the number of tuning available by powertop",
-	})
+	pt_tu_count := promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "powertop_tunables_count",
+			Help: "counts the number of tuning available by powertop",
+		},
+	)
 
-	pt_wakeup_count := promauto.NewGauge(prometheus.GaugeOpts{
-		Name: "powertop_wakeup_count",
-		Help: "counts the wake up calls per second available by powertop",
-	})
+	pt_wakeup_count := promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "powertop_wakeup_count",
+			Help: "counts the wake up calls per second available by powertop",
+		},
+	)
 
-	pt_cpu_usage_count := promauto.NewGauge(prometheus.GaugeOpts{
-		Name: "powertop_cpu_usage_count",
-		Help: "counts the cpu usage in % by powertop",
-	})
+	pt_cpu_usage_count := promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "powertop_cpu_usage_count",
+			Help: "counts the cpu usage in % by powertop",
+		},
+	)
 
-	pt_baseline_power_count := promauto.NewGauge(prometheus.GaugeOpts{
-		Name: "powertop_baseline_power_count",
-		Help: "counts the baseline power used available by powertop",
-	})
+	pt_baseline_power_count := promauto.NewGauge(
+		prometheus.GaugeOpts{
+			Name: "powertop_baseline_power_count",
+			Help: "counts the baseline power used available by powertop",
+		},
+	)
+	//container.ListImages()
+	////pulling powerTop image from dockerhub
+	//err = container.PullPowertopContainerImage()
+	//if err != nil {
+	//	log.Printf("Failed to pull image")
+	//}
+	////i := 0
+	//for true {
+	//	fmt.Println("in for loop")
+	//
+	//	//this will start and stop container for every 1 hour and
+	//	err, data = container.LoopContainer()
+	//	if err != nil {
+	//		//continue
+	//	}
+	//	//i++
+	//	//log.Printf("our %", i)
+	//}
+	//
+	//if err != nil {
+	//	log.Printf(
+	//		"Error in starting the container %v",
+	//		err,
+	//	)
+	//}
 
 	for {
 		data, err := stats.ReadCSV(path)
 		if err != nil {
-			log.Printf("Failed to fetch data : %v", err)
+			log.Printf(
+				"Failed to fetch data : %v",
+				err,
+			)
 		}
 		var t int
 		t = 0
@@ -117,7 +168,10 @@ func main() {
 			fmt.Println(len(line))
 			fmt.Println(line)
 			t++
-			if strings.Contains(line[0], " *  *  *   Device Power Report   *  *  *") {
+			if strings.Contains(
+				line[0],
+				" *  *  *   Device Power Report   *  *  *",
+			) {
 				fmt.Println("hello")
 				baseLinePower := data[t-3][len(data[t-2])-1]
 
@@ -157,7 +211,10 @@ func main() {
 
 		//Update the metric
 		if err != nil {
-			log.Printf("Error fetching no of Tunables %v", err)
+			log.Printf(
+				"Error fetching no of Tunables %v",
+				err,
+			)
 		} else {
 			pt_tu_count.Set(float64(tunNum))
 			fmt.Println("***********************************")

@@ -1,6 +1,7 @@
 package stats
 
 import (
+	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
@@ -13,6 +14,7 @@ const (
 var (
 	baseLinePower string
 	reBLP         = regexp.MustCompile(reBaseLinePower)
+	blp_value     float64
 )
 
 // ParseBaseLinePower parse to get BaseLine data
@@ -22,17 +24,17 @@ func ParseBaseLinePower(data [][]string) string {
 		k++
 		if strings.Contains(line[0], " *  *  *   Device Power Report   *  *  *") {
 			baseLinePower = data[k-3][len(data[k-2])-1]
+			fmt.Println("+++++++++++++++++++++++++++++++++++++")
+			fmt.Println(baseLinePower)
+			fmt.Println("+++++++++++++++++++++++++++++++++++++")
 		}
 	}
 	return baseLinePower
 
 }
 func GetBaseLinePOwer(parsedLine string) float64 {
-	reBLP.Find([]byte(parsedLine))
-	blp, err := strconv.ParseFloat(baseLinePower, 8)
-
-	if err != nil {
-		return 0.0
-	}
-	return blp
+	matches := reBLP.FindAllStringSubmatch(parsedLine, -1)
+	blp := matches[0][1]
+	blp_value, _ = strconv.ParseFloat(blp, 8)
+	return blp_value
 }
