@@ -1,7 +1,6 @@
 package stats
 
 import (
-	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
@@ -30,7 +29,10 @@ func (sys_info SysInfo) ParseSysInfo(data [][]string) SysInfo {
 	k := 0
 	for _, line := range data {
 		k++
-		if strings.Contains(line[0], " *  *  *   Top 10 Power Consumers   *  *  *") {
+		if strings.Contains(
+			line[0],
+			" *  *  *   Top 10 Power Consumers   *  *  *",
+		) {
 			wake_up = data[k-3][1]
 			cpu_usage = data[k-3][2]
 			break
@@ -40,16 +42,28 @@ func (sys_info SysInfo) ParseSysInfo(data [][]string) SysInfo {
 	reWakeUPInfo := regexp.MustCompile(re_wakeup_info)
 	reCpuInfo := regexp.MustCompile(re_cpu_usage_info)
 
-	matches := reWakeUPInfo.FindAllStringSubmatch(wake_up, -1)
-	matches2 := reCpuInfo.FindAllStringSubmatch(cpu_usage, -1)
+	matches := reWakeUPInfo.FindAllStringSubmatch(
+		wake_up,
+		-1,
+	)
+	matches2 := reCpuInfo.FindAllStringSubmatch(
+		cpu_usage,
+		-1,
+	)
 	wakeUpInfo := matches[0][1]
 	cpuInfo := matches2[0][1]
 	//fmt.Println("&**&&*&*&&&*&&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*")
 	//fmt.Println(wakeUpInfo)
 	//fmt.Println(cpuInfo)
 	//fmt.Println("&**&&*&*&&&*&&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*")
-	sys_info.CpuUsage, _ = strconv.ParseFloat(cpuInfo, 8)
-	sys_info.Wakeups, _ = strconv.ParseFloat(wakeUpInfo, 8)
+	sys_info.CpuUsage, _ = strconv.ParseFloat(
+		cpuInfo,
+		8,
+	)
+	sys_info.Wakeups, _ = strconv.ParseFloat(
+		wakeUpInfo,
+		8,
+	)
 
 	return sys_info
 
@@ -63,10 +77,10 @@ func (sys_info SysInfo) ParseSysInfo(data [][]string) SysInfo {
 //}
 
 func (sys_info SysInfo) GetWakeUpData() float64 {
-	fmt.Println("##############################")
-	fmt.Println(sys_info.CpuUsage)
-	fmt.Println(sys_info.Wakeups)
-	fmt.Println("##############################")
+	//fmt.Println("##############################")
+	//fmt.Println(sys_info.CpuUsage)
+	//fmt.Println(sys_info.Wakeups)
+	//fmt.Println("##############################")
 
 	return sys_info.Wakeups
 }

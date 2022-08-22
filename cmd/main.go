@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"strings"
+	"os/exec"
 	"time"
 
 	"github.com/project-flotta/powertop_container/pkg/stats"
@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	path = "/var/tmp/pwtp/powertop_report.csv"
+	path = "/var/tmp/powertop_report.csv"
 )
 
 var (
@@ -127,103 +127,86 @@ func main() {
 			Help: "counts the baseline power used available by powertop",
 		},
 	)
-	//container.ListImages()
-	////pulling powerTop image from dockerhub
-	//err = container.PullPowertopContainerImage()
-	//if err != nil {
-	//	log.Printf("Failed to pull image")
-	//}
-	////i := 0
-	//for true {
-	//	fmt.Println("in for loop")
-	//
-	//	//this will start and stop container for every 1 hour and
-	//	err, data = container.LoopContainer()
-	//	if err != nil {
-	//		//continue
-	//	}
-	//	//i++
-	//	//log.Printf("our %", i)
-	//}
-	//
-	//if err != nil {
-	//	log.Printf(
-	//		"Error in starting the container %v",
-	//		err,
-	//	)
-	//}
 
-	for {
-		data, err := stats.ReadCSV(path)
-		if err != nil {
-			log.Printf(
-				"Failed to fetch data : %v",
-				err,
-			)
-		}
-		var t int
-		t = 0
-		//fmt.Println(data)
-		for _, line := range data {
-			fmt.Println(len(line))
-			fmt.Println(line)
-			t++
-			if strings.Contains(
-				line[0],
-				" *  *  *   Device Power Report   *  *  *",
-			) {
-				fmt.Println("hello")
-				baseLinePower := data[t-3][len(data[t-2])-1]
+	ticker := time.NewTicker(500 * time.Millisecond)
+	done := make(chan bool)
 
-				fmt.Println(baseLinePower)
-				fmt.Println(len(baseLinePower))
+	go func() {
+		for {
+			select {
+			case <-done:
+				return
+			case t := <-ticker.C:
+				fmt.Println(
+					"Tick at",
+					t,
+				)
+				fmt.Println("command started")
+				cmd := exec.Command(
+					"powertop",
+					"--csv="+path,
+					"--time=4s",
+				)
+				cmd.Wait()
+				out, err := cmd.Output()
+				if err != nil {
+					log.Printf(
+						"%v",
+						err,
+					)
+				}
+				fmt.Printf(
+					"%s",
+					out,
+				)
+				data, err := stats.ReadCSV(path)
+				if err != nil {
+					log.Printf(
+						"error in opening the csv file %v",
+						err,
+					)
+				}
+
+				// parse_csv_and_publish(path)
+				sysInfo, baseLinePower, tunNum := ParseData(data)
+
+				//publish
+				////Fetch wakeup data
+				pt_wakeup_count.Set(sysInfo.Wakeups)
+
+				////Fetch cpuUsage data
+				pt_cpu_usage_count.Set(sysInfo.CpuUsage)
+
+				////Fetch baseLine power
+				pt_baseline_power_count.Set(baseLinePower)
+
+				//Fetch no of tunables
+				pt_tu_count.Set(float64(tunNum))
+
 			}
-
 		}
+	}()
+	time.Sleep(20 * time.Second)
+}
 
-		sysInfo = sysInfo.ParseSysInfo(data)
+func ParseData(data [][]string) (stats.SysInfo, float64, uint32) {
+	//parsing data
+	sysInfo = sysInfo.ParseSysInfo(data)
+	baseLineData := stats.ParseBaseLinePower(data)
+	parsedTuned := stats.ParseTunables(data)
+	tunNum := uint32(0)
+	tunNum = stats.GeNumOfTunables(parsedTuned)
+	//print tunable logs in console
+	//stats.TunableLogs(parsedTuned)
+	baseLinePower := stats.GetBaseLinePower(baseLineData)
 
-		////Fetch wakeup data
-		wakeup_calls := sysInfo.Wakeups
-		pt_wakeup_count.Set(wakeup_calls)
-		fmt.Println("***********************************")
-		fmt.Println(wakeup_calls)
-		fmt.Println("***********************************")
-		////Fetch cpuUsage data
-		cpu_usage := sysInfo.CpuUsage
-		pt_cpu_usage_count.Set(cpu_usage)
-		fmt.Println("***********************************")
-		fmt.Println(cpu_usage)
-		fmt.Println("***********************************")
-		////Fetch baseLine power
-		baseLineData := stats.ParseBaseLinePower(data)
-		baseLinePower := stats.GetBaseLinePOwer(baseLineData)
-		pt_baseline_power_count.Set(baseLinePower)
-		fmt.Println("***********************************")
-		fmt.Println(baseLinePower)
-		fmt.Println("***********************************")
-		//Fetch no of tunables
-		parsedData := stats.ParseTunables(data)
-		tunNum, err := stats.GeNumOfTunables(parsedData)
-
-		//Print logs
-		stats.TunableLogs(parsedData)
-
-		//Update the metric
-		if err != nil {
-			log.Printf(
-				"Error fetching no of Tunables %v",
-				err,
-			)
-		} else {
-			pt_tu_count.Set(float64(tunNum))
-			fmt.Println("***********************************")
-			fmt.Println(tunNum)
-			fmt.Println("***********************************")
-		}
-
-		//Sleeps for a hour
-		time.Sleep(time.Second * 20)
-	}
-
+	//fmt.Println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+	//fmt.Printf(
+	//	"%v",
+	//	sysInfo,
+	//)
+	//fmt.Println(baseLinePower)
+	//fmt.Println(tunNum)
+	//fmt.Println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+	return sysInfo, baseLinePower, tunNum
 }

@@ -1,0 +1,538 @@
+____________________________________________________________________
+			P o w e r T O P
+
+____________________________________________________________________
+ *  *  *   System Information   *  *  *
+
+PowerTOP Version;2.14 ran at Tue Aug  2 13:59:13 2022
+
+Kernel Version;Linux version 5.18.11-100.fc35.x86_64
+System Name;LENOVOLNVNB161216IdeaPad 3 15ITL6
+CPU Information;4 11th Gen Intel(R) Core(TM) i3-1115G4 @ 3.00GHz
+OS Information;Fedora release 35 (Thirty Five)
+
+Target: 1 units/s;System:  960.2 wakeup/s;CPU:  12.5% usage;GPU: 0 ops/s;GFX: 38.9 wakeups/s;VFS: 0 ops/s;
+
+____________________________________________________________________
+ *  *  *   Top 10 Power Consumers   *  *  *
+
+Usage;Events/s;Category;Description
+  0.6%;340.1;Timer;tick_sched_timer
+  0.5%; 86.8;Timer;hrtimer_wakeup
+  0.2%; 47.5;Process;[PID 5112] kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-fil
+  0.2%; 43.2;Process;[PID 3231] kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-fil
+  0.2%; 37.1;Process;[PID 5115] kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-fil
+  0.2%; 31.9;Process;[PID 9308] /usr/share/code/code --type=gpu-process --disable-color-correct-rendering --enable-crashpad --crashpad-handler-pid=9
+  0.2%; 29.8;Process;[PID 5113] kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-fil
+  0.0%; 34.2;Process;[PID 2052] /usr/local/bin/containerd 
+  0.1%; 29.2;Process;[PID 12352] kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-fi
+  0.0%; 20.7;Process;[PID 3198] etcd --advertise-client-urls=https://172.18.0.2:2379 --cert-file=/etc/kubernetes/pki/etcd/server.crt --client-cert-a
+
+____________________________________________________________________
+ *  *  *   Processor Idle State Report   *  *  *
+
+Package;0
+C2 (pc2);  5.7%
+C3 (pc3);  5.3%
+C6 (pc6);  0.0%
+C7 (pc7);  0.0%
+C8 (pc8);  0.0%
+C9 (pc9);  0.0%
+C10 (pc10);  0.0%
+;
+;
+;
+
+;Core 0
+C3 (cc3);  0.0%
+C6 (cc6);  0.0%
+C7 (cc7); 24.6%
+;Core 1
+C3 (cc3);  0.0%
+C6 (cc6);  0.0%
+C7 (cc7); 26.4%
+;GPU 825060206
+Powered On; 10.0%
+RC6; 90.0%
+RC6p;  0.0%
+RC6pp;  0.0%
+
+CPU;0;CPU;2
+C0 active;  8.4%;  8.3%;
+POLL;  0.0%;   0.0 ms;  0.0%;   0.0 ms
+C1_ACPI; 36.5%;   0.3 ms; 41.5%;   0.3 ms
+C2_ACPI; 25.2%;   0.8 ms; 21.8%;   0.7 ms
+C3_ACPI; 23.4%;   1.9 ms; 21.3%;   1.8 ms
+;
+;
+;
+;
+;
+CPU;1;CPU;3
+C0 active;  7.7%;  8.0%;
+POLL;  0.0%;   0.0 ms;  0.0%;   0.0 ms
+C1_ACPI; 37.0%;   0.3 ms; 37.6%;   0.3 ms
+C2_ACPI; 25.3%;   0.8 ms; 23.7%;   0.8 ms
+C3_ACPI; 23.0%;   2.0 ms; 23.9%;   2.0 ms
+;
+;
+;
+;
+;
+;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+;;;;
+
+____________________________________________________________________
+ *  *  *   Processor Frequency Report   *  *  *
+
+Package;0
+Idle;
+;
+;
+;
+
+;Core 0
+Idle;
+;Core 1
+Idle;
+;
+;
+;
+
+CPU 0;CPU 2
+Average;1.6 GHz;1.6 GHz
+Idle;
+CPU 1;CPU 3
+Average;1.5 GHz;1.6 GHz
+Idle;
+;
+;;
+;;
+;;
+;;
+;;
+
+____________________________________________________________________
+ *  *  *   Overview of Software Power Consumers   *  *  *
+
+Usage;Wakeups/s;GPU ops/s;Disk IO/s;GFX Wakeups/s;Category;Description
+  5.7 ms/s;340.1;;;;Timer;tick_sched_timer
+  5.3 ms/s; 86.8;;;;Timer;hrtimer_wakeup
+  1.9 ms/s; 47.5;;;;Process;[PID 5112] kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-fil
+  1.6 ms/s; 43.2;;;;Process;[PID 3231] kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-fil
+  1.5 ms/s; 37.1;;;;Process;[PID 5115] kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-fil
+  2.3 ms/s; 31.9;;; 14.1;Process;[PID 9308] /usr/share/code/code --type=gpu-process --disable-color-correct-rendering --enable-crashpad --crashpad-handler-pid=9
+  2.1 ms/s; 29.8;;; 15.4;Process;[PID 5113] kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-fil
+300.9 us/s; 34.2;;;;Process;[PID 2052] /usr/local/bin/containerd 
+  1.1 ms/s; 29.2;;;;Process;[PID 12352] kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-fi
+154.4 us/s; 20.7;;;  8.9;Process;[PID 3198] etcd --advertise-client-urls=https://172.18.0.2:2379 --cert-file=/etc/kubernetes/pki/etcd/server.crt --client-cert-a
+110.1 us/s; 19.7;;;;Process;[PID 15] [rcu_preempt]
+ 40.8 ms/s;  3.2;;;;kWork;btrfs_work_helper
+125.5 us/s; 15.4;;;;Process;[PID 3173] kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-fil
+606.2 us/s; 13.4;;;;Process;[PID 2986] /usr/local/bin/containerd 
+285.3 us/s; 13.2;;;;Process;[PID 6719] kube-controller-manager --allocate-node-cidrs=true --authentication-kubeconfig=/etc/kubernetes/controller-manager.co
+  2.0 ms/s; 11.9;;;;Process;[PID 9327] /usr/share/code/code --type=gpu-process --disable-color-correct-rendering --enable-crashpad --crashpad-handler-pid=9
+496.5 us/s; 11.5;;;;Process;[PID 6460] /usr/local/bin/containerd 
+  1.0 ms/s;  9.4;;;;kWork;engine_retire
+ 93.5 us/s;  9.0;;;;Process;[PID 3253] kube-controller-manager --allocate-node-cidrs=true --authentication-kubeconfig=/etc/kubernetes/controller-manager.co
+  1.9 ms/s;  7.4;;;;Process;[PID 9757] /usr/share/code/code --type=renderer --enable-crashpad --crashpad-handler-pid=9292 --enable-crash-reporter=5dafad22-
+  1.3 ms/s;  7.1;;;;Interrupt;[0] HI_SOFTIRQ
+300.5 us/s;  6.9;;;;Process;[PID 2984] /usr/local/bin/containerd 
+ 79.9 us/s;  6.9;;;;Process;[PID 2282] /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.
+ 15.5 ms/s;;;;;kWork;intel_atomic_commit_work
+ 13.7 ms/s;  0.6;;;;Interrupt;[7] sched(softirq)
+448.5 us/s;  5.7;;;;Process;[PID 9754] /usr/share/code/code --type=renderer --enable-crashpad --crashpad-handler-pid=9292 --enable-crash-reporter=5dafad22-
+  1.8 ms/s;  5.0;;;;Interrupt;[151] i915
+215.8 us/s;  5.5;;;;Process;[PID 6722] kube-controller-manager --allocate-node-cidrs=true --authentication-kubeconfig=/etc/kubernetes/controller-manager.co
+118.4 us/s;  5.4;;;;kWork;rps_work
+  0.8 ms/s;  4.6;;;;kWork;__intel_wakeref_put_work
+224.2 us/s;  4.2;;;;Process;[PID 3217] etcd --advertise-client-urls=https://172.18.0.2:2379 --cert-file=/etc/kubernetes/pki/etcd/server.crt --client-cert-a
+301.6 us/s;  4.1;;;;Process;[PID 9325] /usr/share/code/code --type=gpu-process --disable-color-correct-rendering --enable-crashpad --crashpad-handler-pid=9
+128.7 us/s;  4.1;;;;Process;[PID 6775] kube-controller-manager --allocate-node-cidrs=true --authentication-kubeconfig=/etc/kubernetes/controller-manager.co
+ 36.2 us/s;  4.0;;;;Process;[PID 6216] /coredns -conf /etc/coredns/Corefile 
+152.8 us/s;  3.9;;;;Process;[PID 3216] etcd --advertise-client-urls=https://172.18.0.2:2379 --cert-file=/etc/kubernetes/pki/etcd/server.crt --client-cert-a
+  0.9 ms/s;  3.2;;;;Process;[PID 2308] /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.
+161.5 us/s;  2.9;;;;Process;[PID 3218] etcd --advertise-client-urls=https://172.18.0.2:2379 --cert-file=/etc/kubernetes/pki/etcd/server.crt --client-cert-a
+186.6 us/s;  2.8;;;;Process;[PID 3215] etcd --advertise-client-urls=https://172.18.0.2:2379 --cert-file=/etc/kubernetes/pki/etcd/server.crt --client-cert-a
+330.3 us/s;  2.7;;;;Process;[PID 2302] /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.
+134.1 us/s;  2.7;;;;kWork;psi_avgs_work
+ 48.3 us/s;  2.7;;;;Process;[PID 6594] /usr/bin/openshift-router 
+ 29.7 us/s;  2.7;;;;Process;[PID 3206] kube-scheduler --authentication-kubeconfig=/etc/kubernetes/scheduler.conf --authorization-kubeconfig=/etc/kubernetes
+  2.3 ms/s;  1.7;;;;Interrupt;[3] net_rx(softirq)
+  1.2 ms/s;  1.6;;;;Process;[PID 3629] /usr/libexec/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -nolisten tcp -background none -noreset -keep
+189.9 us/s;  1.8;;;;Process;[PID 2291] /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.
+251.5 us/s;  1.7;;;;Process;[PID 8100] /opt/google/chrome/chrome --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sand
+ 26.8 us/s;  1.7;;;;Process;[PID 6618] /usr/bin/openshift-router 
+ 37.1 us/s;  1.6;;;;Process;[PID 10421] /home/sibasishbehera/Downloads/goland-2022.1.2/GoLand-2022.1.2/jbr/bin/java -classpath /home/sibasishbehera/Downloa
+ 39.4 us/s;  1.6;;;;Process;[PID 5077] ./jetbrains-toolbox --minimize 
+170.8 us/s;  1.5;;;;Process;[PID 8983] /opt/google/chrome/chrome --type=renderer --enable-crashpad --crashpad-handler-pid=8057 --enable-crash-reporter=5df0
+ 51.9 us/s;  1.5;;;;Process;[PID 5140] ./jetbrains-toolbox --minimize 
+136.7 us/s;  1.4;;;;Process;[PID 2485] /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.
+217.6 us/s;  1.2;;;  0.5;Process;[PID 20252] [kworker/u8:61]
+ 91.7 us/s;  1.3;;;;Process;[PID 3082] kube-scheduler --authentication-kubeconfig=/etc/kubernetes/scheduler.conf --authorization-kubeconfig=/etc/kubernetes
+ 37.2 us/s;  1.2;;;;Process;[PID 3267] kube-scheduler --authentication-kubeconfig=/etc/kubernetes/scheduler.conf --authorization-kubeconfig=/etc/kubernetes
+184.4 us/s;  1.1;;;;kWork;__i915_gem_free_work
+ 21.9 us/s;  1.1;;;;kWork;toggle_allocation_gate
+ 17.7 us/s;  1.1;;;;Process;[PID 5787] /coredns -conf /etc/coredns/Corefile 
+  2.7 ms/s;;;;;Interrupt;[9] RCU(softirq)
+ 31.5 us/s;  1.0;;;;Process;[PID 6589] /usr/bin/openshift-router 
+ 17.3 us/s;  0.9;;;;Process;[PID 6555] /app/cmd/cainjector/cainjector --v=2 --leader-election-namespace=kube-system 
+ 47.6 us/s;  0.8;;;;kWork;defense_work_handler
+ 51.2 us/s;  0.8;;;;Process;[PID 1014] /opt/teamviewer/tv_bin/teamviewerd -d 
+ 49.1 us/s;  0.8;;;;Process;[PID 10438] /home/sibasishbehera/Downloads/goland-2022.1.2/GoLand-2022.1.2/jbr/bin/java -classpath /home/sibasishbehera/Downloa
+  6.2 us/s;  0.8;;;;Process;[PID 5476] /app/cmd/controller/controller --v=2 --cluster-resource-namespace=cert-manager --leader-election-namespace=kube-syst
+ 56.5 us/s;  0.7;;;;Process;[PID 8077] /opt/google/chrome/chrome --enable-crashpad 
+ 47.6 us/s;  0.7;;;;Process;[PID 6218] /coredns -conf /etc/coredns/Corefile 
+ 37.8 us/s;  0.7;;;;Process;[PID 21779] ./jetbrains-toolbox --minimize 
+ 47.9 us/s;  0.6;;;;Interrupt;[132] vmd0
+169.6 us/s;  0.6;;;;Process;[PID 9747] /usr/share/code/code --type=renderer --enable-crashpad --crashpad-handler-pid=9292 --enable-crash-reporter=5dafad22-
+ 47.8 us/s;  0.6;;;;Interrupt;[130] vmd0
+  8.1 us/s;  0.6;;;;Process;[PID 6716] local-path-provisioner --debug start --helper-image k8s.gcr.io/build-image/debian-base:buster-v1.7.2 --config /etc/c
+  5.3 us/s;  0.6;;;;Process;[PID 779] [psimon]
+ 10.6 us/s;  0.5;;;;Process;[PID 10080] /home/sibasishbehera/.vscode/extensions/ms-vscode.cpptools-1.11.4-linux-x64/bin/cpptools 
+ 10.3 us/s;  0.5;;;;Process;[PID 14639] /home/sibasishbehera/.vscode/extensions/ms-vscode.cpptools-1.11.4-linux-x64/bin/cpptools 
+ 52.1 us/s;  0.5;;;;Process;[PID 9388] /usr/share/code/code --ms-enable-electron-run-as-node /usr/share/code/resources/app/out/bootstrap-fork --type=ptyHos
+ 12.8 us/s;  0.5;;;;Process;[PID 6426] local-path-provisioner --debug start --helper-image k8s.gcr.io/build-image/debian-base:buster-v1.7.2 --config /etc/c
+  5.4 us/s;  0.5;;;;Process;[PID 887] /usr/bin/containerd 
+  1.0 ms/s; 0.10;;;;Process;[PID 54] [kswapd0]
+ 80.9 us/s;  0.4;;;;Process;[PID 6219] /coredns -conf /etc/coredns/Corefile 
+164.7 us/s;  0.4;;;;Process;[PID 8044] /opt/google/chrome/chrome --enable-crashpad 
+ 22.8 us/s;  0.4;;;;kWork;kfree_rcu_work
+ 21.3 us/s;  0.4;;;;kWork;blk_mq_requeue_work
+ 12.7 us/s;  0.4;;;;Process;[PID 896] /usr/bin/containerd 
+ 82.7 us/s;  0.4;;;;Interrupt;[129] vmd0
+ 64.4 us/s;  0.4;;;;Process;[PID 8797] /opt/google/chrome/chrome --type=renderer --enable-crashpad --crashpad-handler-pid=8057 --enable-crash-reporter=5df0
+  1.1 ms/s;;;;;Interrupt;[1] timer(softirq)
+ 42.4 us/s;  0.4;;;;Process;[PID 5790] /coredns -conf /etc/coredns/Corefile 
+ 13.3 us/s;  0.4;;;;kWork;kfree_rcu_monitor
+ 75.0 us/s;  0.3;;;;Process;[PID 703] /usr/lib/systemd/systemd-oomd 
+ 37.4 us/s;  0.3;;;;Process;[PID 9769] /usr/share/code/code --ms-enable-electron-run-as-node --inspect-port=0 /usr/share/code/resources/app/out/bootstrap-f
+ 30.4 us/s;  0.3;;;;Process;[PID 6597] /usr/bin/openshift-router 
+ 29.5 us/s;  0.3;;;;Process;[PID 5828] /coredns -conf /etc/coredns/Corefile 
+ 27.6 us/s;  0.3;;;;Process;[PID 11010] /coredns -conf /etc/coredns/Corefile 
+ 16.8 us/s;  0.3;;;;kWork;handle_update
+  0.9 ms/s;;;;;Interrupt;[14] INT34C5:00
+ 10.0 us/s;  0.3;;;;Process;[PID 6572] /app/cmd/cainjector/cainjector --v=2 --leader-election-namespace=kube-system 
+513.6 us/s; 0.15;;;;kWork;wb_workfn
+ 47.7 us/s; 0.30;;;;Process;[PID 9002] /opt/google/chrome/chrome --type=renderer --enable-crashpad --crashpad-handler-pid=8057 --enable-crash-reporter=5df0
+ 45.7 us/s; 0.30;;;;Process;[PID 8971] /opt/google/chrome/chrome --type=renderer --enable-crashpad --crashpad-handler-pid=8057 --enable-crash-reporter=5df0
+
+
+The battery reports a discharge rate of:  9.57  W;
+
+The energy consumed was :  205  J;
+____________________________________________________________________
+ *  *  *   Device Power Report   *  *  *
+
+Usage;Device Name
+ 12.6%;CPU misc
+ 12.6%;CPU core
+  0.4 pkts/s;nic:veth89ea5b4
+100.0%;Radio device: iwlwifi
+100.0%;Radio device: ideapad_acpi
+100.0%;Radio device: ideapad_acpi
+100.0%;Radio device: btusb
+100.0%;USB device: Lenovo USB Optical Mouse (PixArt)
+100.0%;USB device: xHCI Host Controller
+  7.7 pkts/s;Network interface: wlp0s20f3 (iwlwifi)
+  6.9%;Display backlight
+  0.3 pkts/s;nic:br-0ada188d9552
+  0.0 pkts/s;nic:cni-podman0
+  0.0%;USB device: xHCI Host Controller
+  0.0%;Audio codec hwC0D0: Realtek
+  0.0%;USB device: xHCI Host Controller
+  0.0%;USB device: xHCI Host Controller
+  0.0 pkts/s;nic:docker0
+  0.0%;USB device: usb-device-8087-0aaa
+100.0%;PCI Device: Intel Corporation RST VMD Managed Controller
+100.0%;PCI Device: Intel Corporation Tiger Lake-LP SATA Controller
+100.0%;PCI Device: Intel Corporation Tiger Lake-LP LPC Controller
+100.0%;PCI Device: Intel Corporation Wi-Fi 6 AX201
+100.0%;PCI Device: Intel Corporation Tiger Lake-LP SPI Controller
+100.0%;PCI Device: Intel Corporation Device a0bc
+100.0%;PCI Device: Intel Corporation Device 9a04
+100.0%;PCI Device: Intel Corporation Volume Management Device NVMe RAID Controller
+100.0%;PCI Device: Intel Corporation Tiger Lake-LP Shared SRAM
+100.0%;PCI Device: Intel Corporation Device 9a78
+100.0%;PCI Device: Micron Technology Inc Device 5404
+100.0%;PCI Device: Intel Corporation Tigerlake Telemetry Aggregator Driver
+100.0%;PCI Device: Intel Corporation Tiger Lake-LP USB 3.2 Gen 2x1 xHCI Host Controller
+100.0%;PCI Device: Intel Corporation TigerLake-LP Dynamic Tuning Processor Participant
+ 10.7%;PCI Device: Intel Corporation Tiger Lake-LP Serial IO I2C Controller #1
+ 10.5%;runtime-i2c_designware.1
+  0.0%;PCI Device: Intel Corporation Tiger Lake-LP Serial IO SPI Controller #1
+  0.0%;Audio codec hwC0D2: Intel
+  0.0 pkts/s;nic:virbr0
+  0.0%;PCI Device: Intel Corporation Tiger Lake-LP Thunderbolt 4 USB Controller
+  0.0%;runtime-PNP0C09:00
+  0.0%;PCI Device: Intel Corporation Tiger Lake-LP Management Engine Interface
+  0.0%;PCI Device: Intel Corporation Tiger Lake-LP Serial IO UART Controller #0
+  0.0%;PCI Device: Intel Corporation Tiger Lake-LP Smart Sound Technology Audio Controller
+  0.0%;runtime-PNP0C0D:00
+  0.0%;runtime-iTCO_wdt
+  0.0%;PCI Device: Intel Corporation Tiger Lake-LP SMBus Controller
+  0.0%;runtime-INTC1043:00
+  0.0%;runtime-INTC1040:00
+  0.0%;PCI Device: Intel Corporation Tiger Lake-LP Serial IO I2C Controller #0
+  0.0%;runtime-PNP0C14:00
+  0.0%;runtime-alarmtimer.0.auto
+  0.0%;runtime-reg-dummy
+  0.0%;runtime-idma64.3
+  0.0%;runtime-PNP0C0A:00
+  0.0%;runtime-kgdboc
+  0.0%;runtime-skl_hda_dsp_generic
+  0.0%;runtime-ACPI0003:00
+  0.0%;runtime-INT34C5:00
+  0.0%;runtime-INT33A1:00
+  0.0%;runtime-rtc_cmos
+  0.0%;runtime-ACPI000C:00
+  0.0%;runtime-snd-soc-dummy
+  0.0%;USB device: Integrated Camera (Chicony Electronics Co.,Ltd.)
+  0.0%;runtime-intel_rapl_msr.0
+  0.0%;runtime-Fixed MDIO bus.0
+  0.0%;runtime-INTC1043:03
+  0.0%;runtime-INTC6000:00
+  0.0%;runtime-PNP0C14:03
+  0.0%;runtime-PNP0C0C:00
+  0.0%;runtime-idma64.1
+  0.0%;runtime-microcode
+  0.0%;I2C Adapter (i2c-12): SMBus I801 adapter at efa0
+  0.0%;runtime-IDEA2004:00
+  0.0%;runtime-coretemp.0
+  0.0%;runtime-rtc-efi.0
+  0.0%;runtime-regulatory.0
+  0.0%;runtime-ACPI000E:00
+  0.0%;runtime-i2c_designware.0
+  0.0%;runtime-PNP0C14:01
+  0.0%;runtime-INTC1043:01
+  0.0%;runtime-PNP0103:00
+  0.0%;runtime-dmic-codec
+  0.0%;runtime-pxa2xx-spi.3
+  0.0%;runtime-LHK2019:00
+  0.0%;runtime-INTC1043:04
+  0.0%;runtime-efivars.0
+  0.0%;runtime-serial8250
+  0.0%;runtime-PNP0C14:04
+  0.0%;runtime-i8042
+  0.0%;runtime-idma64.2
+  0.0%;I2C Adapter (i2c-4): i915 gmbus dpc
+  0.0%;runtime-VPC2004:00
+  0.0%;runtime-PNP0C14:02
+  0.0%;runtime-pcspkr
+  0.0%;runtime-idma64.0
+  0.0%;I2C Adapter (i2c-3): i915 gmbus dpb
+  0.0%;I2C Adapter (i2c-10): i915 gmbus tc6
+  0.0%;I2C Adapter (i2c-1): Synopsys DesignWare I2C adapter
+  0.0%;runtime-dw-apb-uart.2
+  0.0%;I2C Adapter (i2c-6): i915 gmbus tc2
+  0.0%;runtime-INTC1043:02
+  0.0%;I2C Adapter (i2c-11): AUX A/DDI A/PHY A
+  0.0%;I2C Adapter (i2c-2): i915 gmbus dpa
+  0.0%;I2C Adapter (i2c-0): Synopsys DesignWare I2C adapter
+  0.0%;I2C Adapter (i2c-9): i915 gmbus tc5
+  0.0%;I2C Adapter (i2c-7): i915 gmbus tc3
+  0.0%;I2C Device (i2c-MSFT0001:01): MSFT0001:01
+  0.0%;I2C Adapter (i2c-5): i915 gmbus tc1
+  0.0%;I2C Adapter (i2c-8): i915 gmbus tc4
+____________________________________________________________________
+ *  *  *   Process Device Activity   *  *  *
+
+Process;Device
+systemd;/dev/autofs
+;/dev/dri/card0
+;/dev/input/event1
+;/dev/input/event14
+;/dev/input/event2
+;/dev/input/event3
+;/dev/input/event4
+;/dev/input/event5
+;/dev/input/event6
+;/dev/input/event8
+;/dev/kmsg
+;/dev/rfkill
+systemd-journal;/dev/kmsg
+;/dev/kmsg
+bluetoothd;/dev/rfkill
+mcelog;/dev/mcelog
+systemd-logind;/dev/dri/card0
+;/dev/input/event0
+;/dev/input/event1
+;/dev/input/event1
+;/dev/input/event14
+;/dev/input/event2
+;/dev/input/event2
+;/dev/input/event3
+;/dev/input/event4
+;/dev/input/event5
+;/dev/input/event6
+;/dev/input/event8
+thermald;/dev/input/event0
+upowerd;/dev/input/event0
+alsactl;/dev/snd/controlC0
+wpa_supplicant;/dev/rfkill
+;/dev/rfkill
+systemd;/dev/autofs
+systemd-journal;/dev/kmsg
+;/dev/kmsg
+kubelet;/dev/kmsg
+;/dev/kmsg
+Xorg;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/input/event1
+;/dev/input/event14
+;/dev/input/event2
+;/dev/input/event3
+;/dev/input/event4
+;/dev/input/event5
+;/dev/input/event6
+;/dev/input/event8
+gnome-shell;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+gvfsd-fuse;/dev/fuse
+pipewire;/dev/snd/controlC0
+;/dev/snd/seq
+;/dev/snd/seq
+wireplumber;/dev/snd/controlC0
+;/dev/snd/controlC0
+;/dev/snd/controlC0
+gsd-rfkill;/dev/rfkill
+;/dev/rfkill
+jetbrains-toolb;/dev/random
+;/dev/fuse
+xdg-document-po;/dev/fuse
+xdg-desktop-por;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+slack;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/renderD128
+chrome;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/renderD128
+code;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/card0
+;/dev/dri/renderD128
+java;/dev/random
+
+____________________________________________________________________
+ *  *  *   AHCI ALPM Residency Statistics - Not supported on this macine   *  *  *
+
+____________________________________________________________________
+ *  *  *   Software Settings in Need of Tuning   *  *  *
+
+Description;Script
+VM writeback timeout;echo '1500' > '/proc/sys/vm/dirty_writeback_centisecs';
+Enable SATA link power management for host0;echo 'med_power_with_dipm' > '/sys/class/scsi_host/host0/link_power_management_policy';
+Enable SATA link power management for host1;echo 'med_power_with_dipm' > '/sys/class/scsi_host/host1/link_power_management_policy';
+NMI watchdog should be turned off;echo '0' > '/proc/sys/kernel/nmi_watchdog';
+Autosuspend for USB device Lenovo USB Optical Mouse [PixArt];echo 'auto' > '/sys/bus/usb/devices/3-1/power/control';
+Runtime PM for PCI Device Intel Corporation Tiger Lake-LP LPC Controller;echo 'auto' > '/sys/bus/pci/devices/0000:00:1f.0/power/control';
+Runtime PM for PCI Device Intel Corporation Tiger Lake-LP SATA Controller;echo 'auto' > '/sys/bus/pci/devices/0000:00:17.0/power/control';
+Runtime PM for port ata1 of PCI device: Intel Corporation Tiger Lake-LP SATA Controller;echo 'auto' > '/sys/bus/pci/devices/0000:00:17.0/ata1/power/control';
+Runtime PM for port ata2 of PCI device: Intel Corporation Tiger Lake-LP SATA Controller;echo 'auto' > '/sys/bus/pci/devices/0000:00:17.0/ata2/power/control';
+Runtime PM for PCI Device Intel Corporation TigerLake-LP Dynamic Tuning Processor Participant;echo 'auto' > '/sys/bus/pci/devices/0000:00:04.0/power/control';
+Runtime PM for PCI Device Intel Corporation Wi-Fi 6 AX201;echo 'auto' > '/sys/bus/pci/devices/0000:00:14.3/power/control';
+Runtime PM for PCI Device Intel Corporation Device 9a04;echo 'auto' > '/sys/bus/pci/devices/0000:00:00.0/power/control';
+Runtime PM for PCI Device Intel Corporation RST VMD Managed Controller;echo 'auto' > '/sys/bus/pci/devices/10000:e0:1c.0/power/control';
+Runtime PM for PCI Device Intel Corporation Tiger Lake-LP SPI Controller;echo 'auto' > '/sys/bus/pci/devices/0000:00:1f.5/power/control';
+Runtime PM for PCI Device Intel Corporation Tigerlake Telemetry Aggregator Driver;echo 'auto' > '/sys/bus/pci/devices/0000:00:0a.0/power/control';
+Runtime PM for PCI Device Intel Corporation Volume Management Device NVMe RAID Controller;echo 'auto' > '/sys/bus/pci/devices/0000:00:0e.0/power/control';
+Runtime PM for PCI Device Micron Technology Inc Device 5404;echo 'auto' > '/sys/bus/pci/devices/10000:e1:00.0/power/control';
+Runtime PM for PCI Device Intel Corporation Tiger Lake-LP Shared SRAM;echo 'auto' > '/sys/bus/pci/devices/0000:00:14.2/power/control';
+____________________________________________________________________
+ *  *  *   Untunable Software Issues   *  *  *
+
+Description
+I2C Adapter i2c-11 has no runtime power management
+I2C Device i2c-MSFT0001:01 has no runtime power management
+____________________________________________________________________
+ *  *  *   Optimal Tuned Software Settings   *  *  *
+
+Description
+Bluetooth device interface status
+Enable Audio codec power management
+Runtime PM for I2C Adapter i2c-12 (SMBus I801 adapter at efa0)
+Autosuspend for USB device xHCI Host Controller [usb3]
+Runtime PM for I2C Adapter i2c-0 (Synopsys DesignWare I2C adapter)
+Autosuspend for USB device xHCI Host Controller [usb1]
+Autosuspend for USB device xHCI Host Controller [usb4]
+Autosuspend for unknown USB device 3-10 (8087:0aaa)
+Autosuspend for USB device xHCI Host Controller [usb2]
+Autosuspend for USB device Integrated Camera [Chicony Electronics Co.,Ltd.]
+Runtime PM for I2C Adapter i2c-10 (i915 gmbus tc6)
+Runtime PM for I2C Adapter i2c-7 (i915 gmbus tc3)
+Runtime PM for I2C Adapter i2c-9 (i915 gmbus tc5)
+Runtime PM for I2C Adapter i2c-3 (i915 gmbus dpb)
+Runtime PM for I2C Adapter i2c-4 (i915 gmbus dpc)
+Runtime PM for I2C Adapter i2c-1 (Synopsys DesignWare I2C adapter)
+Runtime PM for I2C Adapter i2c-8 (i915 gmbus tc4)
+Runtime PM for I2C Adapter i2c-2 (i915 gmbus dpa)
+Runtime PM for I2C Adapter i2c-5 (i915 gmbus tc1)
+Runtime PM for I2C Adapter i2c-6 (i915 gmbus tc2)
+Runtime PM for PCI Device Intel Corporation Tiger Lake-LP Serial IO SPI Controller #1
+Runtime PM for PCI Device Intel Corporation Tiger Lake-LP USB 3.2 Gen 2x1 xHCI Host Controller
+Runtime PM for PCI Device Intel Corporation Tiger Lake-LP Smart Sound Technology Audio Controller
+Runtime PM for PCI Device Intel Corporation Tiger Lake-LP SMBus Controller
+Runtime PM for PCI Device Intel Corporation Tiger Lake-LP Serial IO UART Controller #0
+Runtime PM for PCI Device Intel Corporation Device a0bc
+Runtime PM for PCI Device Intel Corporation Tiger Lake-LP Management Engine Interface
+Runtime PM for PCI Device Intel Corporation Tiger Lake-LP Thunderbolt 4 USB Controller
+Runtime PM for PCI Device Intel Corporation Device 9a78
+Runtime PM for PCI Device Intel Corporation Tiger Lake-LP Serial IO I2C Controller #0
+Runtime PM for PCI Device Intel Corporation Tiger Lake-LP Serial IO I2C Controller #1
+
+____________________________________________________________________
+ *  *  *   Wake status of the devices   *  *  *
+
+Description;Script
+Wake-on-lan status for device wlp0s20f3;echo 'enabled' > '/sys/class/net/wlp0s20f3/device/power/wakeup';
+Wake status for USB device usb3;echo 'enabled' > '/sys/bus/usb/devices/usb3/power/wakeup';
+Wake status for USB device usb1;echo 'enabled' > '/sys/bus/usb/devices/usb1/power/wakeup';
+Wake status for USB device usb4;echo 'enabled' > '/sys/bus/usb/devices/usb4/power/wakeup';
+Wake status for USB device 3-10;echo 'enabled' > '/sys/bus/usb/devices/3-10/power/wakeup';
+Wake status for USB device usb2;echo 'enabled' > '/sys/bus/usb/devices/usb2/power/wakeup';
+Wake status for USB device 3-1;echo 'enabled' > '/sys/bus/usb/devices/3-1/power/wakeup';
