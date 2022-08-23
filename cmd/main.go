@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"sync"
 	"time"
 
 	"github.com/project-flotta/powertop_container/pkg/stats"
@@ -36,6 +37,7 @@ var (
 	sysInfo stats.SysInfo
 	//mountpoint string
 	data [][]string
+	lock sync.Mutex
 )
 
 func main() {
@@ -132,83 +134,102 @@ func main() {
 
 	ticker := time.NewTicker(5 * time.Millisecond)
 	done := make(chan bool)
+	for {
+		go powerTopStart(
+			done,
+			ticker,
+			pt_wakeup_count,
+			pt_cpu_usage_count,
+			pt_baseline_power_count,
+			pt_tu_count,
+		)
+		time.Sleep(5 * time.Second)
+		done <- true
+	}
 
-	go func() {
-		for {
-			select {
-			case <-done:
-				return
-			case t := <-ticker.C:
-				fmt.Println(
-					"Tick at",
-					t,
-				)
-				fmt.Println("command started")
-				file, err := ioutil.TempFile(
-					"/var/tmp",
-					"powertop_report.csv",
-				)
-				if err != nil {
-					fmt.Println("error")
-					log.Fatal(err)
-				}
-				defer os.Remove(file.Name())
+}
 
-				fmt.Println(file.Name())
-				cmd := exec.Command(
-					"powertop",
-					//"--debug",
-					"--csv="+file.Name(),
-					"--time=2",
-				)
-				defer cmd.Wait()
-				if err != nil {
-					log.Printf(
-						"%v",
-						err,
-					)
-				}
-				out, err := cmd.Output()
+func powerTopStart(done chan bool, ticker *time.Ticker, pt_wakeup_count prometheus.Gauge, pt_cpu_usage_count prometheus.Gauge, pt_baseline_power_count prometheus.Gauge, pt_tu_count prometheus.Gauge) {
+	for {
+		select {
+		case <-done:
+			return
+		case t := <-ticker.C:
+			fmt.Println(
+				"Tick at",
+				t,
+			)
+			fmt.Println("command started")
+			lock.Lock()
+			file, err := tempPowerTopCsvFile()
+			defer func(name string) {
+				err := os.Remove(name)
 				if err != nil {
 					log.Printf(
 						"%v",
 						err,
 					)
 				}
-				fmt.Printf(
-					"%s",
-					out,
+			}(file.Name())
+			//lock.Lock()
+			fmt.Println(file.Name())
+			cmd := exec.Command(
+				"powertop",
+				//"--debug",
+				"--csv="+file.Name(),
+				"--time=5",
+			)
+			out, err := cmd.Output()
+			if err != nil {
+				log.Printf(
+					"%v",
+					err,
 				)
-				fmt.Println("opening file")
-				data, err := stats.ReadCSV(file.Name())
-				fmt.Println("opened")
-				if err != nil {
-					log.Printf(
-						"error in opening the csv file %v",
-						err,
-					)
-				}
-
-				// parse_csv_and_publish(path)
-				sysInfo, baseLinePower, tunNum := ParseData(data)
-
-				//publish
-				////Fetch wakeup data
-				pt_wakeup_count.Set(sysInfo.Wakeups)
-
-				////Fetch cpuUsage data
-				pt_cpu_usage_count.Set(sysInfo.CpuUsage)
-
-				////Fetch baseLine power
-				pt_baseline_power_count.Set(baseLinePower)
-
-				//Fetch no of tunables
-				pt_tu_count.Set(float64(tunNum))
-
 			}
+			fmt.Printf(
+				"%s",
+				out,
+			)
+			fmt.Println("opening file")
+			data, err := stats.ReadCSV(file.Name())
+			fmt.Println("opened")
+			if err != nil {
+				log.Printf(
+					"error in opening the csv file %v",
+					err,
+				)
+			}
+
+			// parse_csv_and_publish(path)
+			sysInfo, baseLinePower, tunNum := ParseData(data)
+
+			//publish
+			////Fetch wakeup data
+			pt_wakeup_count.Set(sysInfo.Wakeups)
+
+			////Fetch cpuUsage data
+			pt_cpu_usage_count.Set(sysInfo.CpuUsage)
+
+			////Fetch baseLine power
+			pt_baseline_power_count.Set(baseLinePower)
+
+			//Fetch no of tunables
+			pt_tu_count.Set(float64(tunNum))
+			lock.Unlock()
 		}
-	}()
-	time.Sleep(20 * time.Second)
+	}
+}
+
+func tempPowerTopCsvFile() (*os.File, error) {
+	file, err := ioutil.TempFile(
+		"/var/tmp",
+		"powertop_report.csv",
+	)
+	if err != nil {
+		fmt.Println("error")
+		log.Fatal(err)
+	}
+	return file, err
 }
 
 func ParseData(data [][]string) (stats.SysInfo, float64, uint32) {
@@ -222,13 +243,13 @@ func ParseData(data [][]string) (stats.SysInfo, float64, uint32) {
 	//stats.TunableLogs(parsedTuned)
 	baseLinePower := stats.GetBaseLinePower(baseLineData)
 
-	//fmt.Println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-	//fmt.Printf(
-	//	"%v",
-	//	sysInfo,
-	//)
-	//fmt.Println(baseLinePower)
-	//fmt.Println(tunNum)
-	//fmt.Println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+	fmt.Println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+	fmt.Printf(
+		"%v",
+		sysInfo,
+	)
+	fmt.Println(baseLinePower)
+	fmt.Println(tunNum)
+	fmt.Println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
 	return sysInfo, baseLinePower, tunNum
 }
