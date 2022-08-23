@@ -19,10 +19,6 @@ import (
 	"net/http"
 )
 
-const (
-	path = "/var/tmp/powertop_report.csv"
-)
-
 var (
 	address = flag.String(
 		"address",
@@ -104,28 +100,28 @@ func main() {
 	}()
 
 	//Prometheus Metrics using Gauge
-	pt_tu_count := promauto.NewGauge(
+	ptTuCount := promauto.NewGauge(
 		prometheus.GaugeOpts{
 			Name: "powertop_tunables_count",
 			Help: "counts the number of tuning available by powertop",
 		},
 	)
 
-	pt_wakeup_count := promauto.NewGauge(
+	ptWakeupCount := promauto.NewGauge(
 		prometheus.GaugeOpts{
 			Name: "powertop_wakeup_count",
 			Help: "counts the wake up calls per second available by powertop",
 		},
 	)
 
-	pt_cpu_usage_count := promauto.NewGauge(
+	ptCpuUsageCount := promauto.NewGauge(
 		prometheus.GaugeOpts{
 			Name: "powertop_cpu_usage_count",
 			Help: "counts the cpu usage in % by powertop",
 		},
 	)
 
-	pt_baseline_power_count := promauto.NewGauge(
+	ptBaselinePowerCount := promauto.NewGauge(
 		prometheus.GaugeOpts{
 			Name: "powertop_baseline_power_count",
 			Help: "counts the baseline power used available by powertop",
@@ -138,10 +134,10 @@ func main() {
 		go powerTopStart(
 			done,
 			ticker,
-			pt_wakeup_count,
-			pt_cpu_usage_count,
-			pt_baseline_power_count,
-			pt_tu_count,
+			ptWakeupCount,
+			ptCpuUsageCount,
+			ptBaselinePowerCount,
+			ptTuCount,
 		)
 		time.Sleep(5 * time.Second)
 		done <- true
@@ -149,7 +145,7 @@ func main() {
 
 }
 
-func powerTopStart(done chan bool, ticker *time.Ticker, pt_wakeup_count prometheus.Gauge, pt_cpu_usage_count prometheus.Gauge, pt_baseline_power_count prometheus.Gauge, pt_tu_count prometheus.Gauge) {
+func powerTopStart(done chan bool, ticker *time.Ticker, ptWakeupCount prometheus.Gauge, ptCpuUsageCount prometheus.Gauge, ptBaselinePowerCount prometheus.Gauge, ptTuCount prometheus.Gauge) {
 	for {
 		select {
 		case <-done:
@@ -205,17 +201,17 @@ func powerTopStart(done chan bool, ticker *time.Ticker, pt_wakeup_count promethe
 
 			//publish
 			////Fetch wakeup data
-			pt_wakeup_count.Set(sysInfo.Wakeups)
+			ptWakeupCount.Set(sysInfo.Wakeups)
 
 			////Fetch cpuUsage data
-			pt_cpu_usage_count.Set(sysInfo.CpuUsage)
+			ptCpuUsageCount.Set(sysInfo.CpuUsage)
 
 			////Fetch baseLine power
-			pt_baseline_power_count.Set(baseLinePower)
+			ptBaselinePowerCount.Set(baseLinePower)
 
 			//Fetch no of tunables
-			pt_tu_count.Set(float64(tunNum))
-			lock.Unlock()
+			ptTuCount.Set(float64(tunNum))
+			//lock.Unlock()
 		}
 	}
 }
