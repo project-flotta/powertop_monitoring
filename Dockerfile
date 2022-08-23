@@ -8,10 +8,10 @@ COPY go.sum .
 RUN go mod download
 COPY . .
 RUN apt-get update -y &&\
-    apt-get install -y libbtrfs-dev libgpgme-dev libdevmapper-dev &&\
+   # apt-get install -y libbtrfs-dev libgpgme-dev libdevmapper-dev &&\
     apt-get install -y powertop
 
 ONBUILD RUN go build -o metrics .../cmd/
 
-ENTRYPOINT ["./app/metrics"]
+ENTRYPOINT ["/app/metrics"]
 

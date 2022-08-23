@@ -3,7 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"log"
+	"os"
 	"os/exec"
 	"time"
 
@@ -128,7 +130,7 @@ func main() {
 		},
 	)
 
-	ticker := time.NewTicker(500 * time.Millisecond)
+	ticker := time.NewTicker(5 * time.Millisecond)
 	done := make(chan bool)
 
 	go func() {
@@ -142,12 +144,30 @@ func main() {
 					t,
 				)
 				fmt.Println("command started")
+				file, err := ioutil.TempFile(
+					"/var/tmp",
+					"powertop_report.csv",
+				)
+				if err != nil {
+					fmt.Println("error")
+					log.Fatal(err)
+				}
+				defer os.Remove(file.Name())
+
+				fmt.Println(file.Name())
 				cmd := exec.Command(
 					"powertop",
-					"--csv="+path,
-					"--time=4s",
+					//"--debug",
+					"--csv="+file.Name(),
+					"--time=2",
 				)
-				cmd.Wait()
+				defer cmd.Wait()
+				if err != nil {
+					log.Printf(
+						"%v",
+						err,
+					)
+				}
 				out, err := cmd.Output()
 				if err != nil {
 					log.Printf(
@@ -159,7 +179,9 @@ func main() {
 					"%s",
 					out,
 				)
-				data, err := stats.ReadCSV(path)
+				fmt.Println("opening file")
+				data, err := stats.ReadCSV(file.Name())
+				fmt.Println("opened")
 				if err != nil {
 					log.Printf(
 						"error in opening the csv file %v",
