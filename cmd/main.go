@@ -22,7 +22,7 @@ import (
 var (
 	address = flag.String(
 		"address",
-		"0.0.0.0:8886",
+		"0.0.0.0:8887",
 		"bind address",
 	)
 	metricsPath = flag.String(
@@ -33,7 +33,7 @@ var (
 	sysInfo stats.SysInfo
 	//mountpoint string
 	data [][]string
-	lock sync.Mutex
+	_    sync.Mutex
 )
 
 func main() {
@@ -139,7 +139,7 @@ func main() {
 			ptBaselinePowerCount,
 			ptTuCount,
 		)
-		time.Sleep(5 * time.Second)
+		time.Sleep(2 * time.Second)
 		done <- true
 	}
 
@@ -156,24 +156,20 @@ func powerTopStart(done chan bool, ticker *time.Ticker, ptWakeupCount prometheus
 				t,
 			)
 			fmt.Println("command started")
-			lock.Lock()
 			file, err := tempPowerTopCsvFile()
 			defer func(name string) {
 				err := os.Remove(name)
 				if err != nil {
-					log.Printf(
-						"%v",
-						err,
-					)
+
 				}
-			}(file.Name())
+			}((*file).Name())
 			//lock.Lock()
 			fmt.Println(file.Name())
 			cmd := exec.Command(
 				"powertop",
 				//"--debug",
 				"--csv="+file.Name(),
-				"--time=5",
+				"--time=1",
 			)
 			out, err := cmd.Output()
 			if err != nil {
@@ -211,7 +207,6 @@ func powerTopStart(done chan bool, ticker *time.Ticker, ptWakeupCount prometheus
 
 			//Fetch no of tunables
 			ptTuCount.Set(float64(tunNum))
-			//lock.Unlock()
 		}
 	}
 }
