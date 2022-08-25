@@ -1,6 +1,7 @@
 package stats
 
 import (
+	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
@@ -26,16 +27,38 @@ var (
 )
 
 func (sys_info SysInfo) ParseSysInfo(data [][]string) SysInfo {
-	k := 0
+	//k := 0
+	//for _, line := range data {
+	//	k++
+	//	if strings.Contains(
+	//		line[0],
+	//		" *  *  *   Top 10 Power Consumers   *  *  *",
+	//	) {
+	//		wake_up = data[k-3][1]
+	//		cpu_usage = data[k-3][2]
+	//		fmt.Println(wake_up)
+	//		fmt.Println(cpu_usage)
+	//		break
+	//	}
+	//}
 	for _, line := range data {
-		k++
-		if strings.Contains(
-			line[0],
-			" *  *  *   Top 10 Power Consumers   *  *  *",
-		) {
-			wake_up = data[k-3][1]
-			cpu_usage = data[k-3][2]
-			break
+		for _, element := range line {
+			if strings.Contains(
+				element,
+				"System:",
+			) {
+				wake_up = element
+				fmt.Println(element)
+				continue
+			}
+			if strings.Contains(
+				element,
+				"CPU:",
+			) {
+				cpu_usage = element
+				fmt.Println(element)
+				break
+			}
 		}
 	}
 	//fmt.Println("re starting +++++++++++++++++++++++++++++++++++++++++++++++++")
@@ -50,18 +73,23 @@ func (sys_info SysInfo) ParseSysInfo(data [][]string) SysInfo {
 		cpu_usage,
 		-1,
 	)
-	wakeUpInfo := matches[0][1]
-	cpuInfo := matches2[0][1]
+	if len(matches) != 0 {
+		wake_up = matches[0][1]
+	}
+	if len(matches2) != 0 {
+		cpu_usage = matches2[0][1]
+	}
+
 	//fmt.Println("&**&&*&*&&&*&&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*")
 	//fmt.Println(wakeUpInfo)
 	//fmt.Println(cpuInfo)
 	//fmt.Println("&**&&*&*&&&*&&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*")
 	sys_info.CpuUsage, _ = strconv.ParseFloat(
-		cpuInfo,
+		wake_up,
 		8,
 	)
 	sys_info.Wakeups, _ = strconv.ParseFloat(
-		wakeUpInfo,
+		cpu_usage,
 		8,
 	)
 

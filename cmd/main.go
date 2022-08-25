@@ -32,8 +32,10 @@ var (
 	)
 	sysInfo stats.SysInfo
 	//mountpoint string
-	data [][]string
-	_    sync.Mutex
+	data          [][]string
+	_             sync.Mutex
+	baseLinePower float64
+	tunNum        uint32
 )
 
 func main() {
@@ -128,7 +130,7 @@ func main() {
 		},
 	)
 
-	ticker := time.NewTicker(5 * time.Millisecond)
+	ticker := time.NewTicker(2 * time.Second)
 	done := make(chan bool)
 	for {
 		go powerTopStart(
@@ -197,13 +199,20 @@ func powerTopStart(done chan bool, ticker *time.Ticker, ptWakeupCount prometheus
 
 			//publish
 			////Fetch wakeup data
-			ptWakeupCount.Set(sysInfo.Wakeups)
+			if sysInfo.Wakeups != 0 {
+				ptWakeupCount.Set(sysInfo.Wakeups)
+			}
 
-			////Fetch cpuUsage data
-			ptCpuUsageCount.Set(sysInfo.CpuUsage)
+			if sysInfo.CpuUsage != 0 {
+				ptCpuUsageCount.Set(sysInfo.CpuUsage)
+			}
+			if baseLinePower != 0 {
+				ptBaselinePowerCount.Set(baseLinePower)
+			}
 
-			////Fetch baseLine power
-			ptBaselinePowerCount.Set(baseLinePower)
+			if baseLinePower != 0 {
+				ptBaselinePowerCount.Set(baseLinePower)
+			}
 
 			//Fetch no of tunables
 			ptTuCount.Set(float64(tunNum))
@@ -228,11 +237,12 @@ func ParseData(data [][]string) (stats.SysInfo, float64, uint32) {
 	sysInfo = sysInfo.ParseSysInfo(data)
 	baseLineData := stats.ParseBaseLinePower(data)
 	parsedTuned := stats.ParseTunables(data)
-	tunNum := uint32(0)
 	tunNum = stats.GeNumOfTunables(parsedTuned)
 	//print tunable logs in console
 	//stats.TunableLogs(parsedTuned)
-	baseLinePower := stats.GetBaseLinePower(baseLineData)
+	if baseLineData != "" {
+		baseLinePower = stats.GetBaseLinePower(baseLineData)
+	}
 
 	fmt.Println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
 	fmt.Printf(

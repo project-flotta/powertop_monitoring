@@ -1,6 +1,7 @@
 package stats
 
 import (
+	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
@@ -21,27 +22,43 @@ var (
 
 // ParseBaseLinePower parse to get BaseLine data
 func ParseBaseLinePower(data [][]string) string {
-	k := 0
+	//k := 0
+	//for _, line := range data {
+	//	k++
+	//	if strings.Contains(
+	//		line[0],
+	//		" *  *  *   Device Power Report   *  *  *",
+	//	) {
+	//		baseLinePower = data[k-3][0]
+	//		if !strings.Contains(
+	//			baseLinePower,
+	//			"baseline",
+	//		) {
+	//			baseLinePower = data[k-4][0]
+	//		}
+	//		fmt.Println("+++++++++++++++++++++++++++++++++++++")
+	//		fmt.Println(baseLinePower)
+	//		fmt.Println("+++++++++++++++++++++++++++++++++++++")
+	//	}
+	//}
+	//			baseLinePower = data[k-4][0]
 	for _, line := range data {
-		k++
-		if strings.Contains(
-			line[0],
-			" *  *  *   Device Power Report   *  *  *",
-		) {
-			baseLinePower = data[k-3][0]
-			if !strings.Contains(
-				baseLinePower,
-				"baseline",
-			) {
-				baseLinePower = data[k-4][0]
+		for _, element := range line {
+			if strings.Contains(
+				element,
+				"discharge rate",
+			) || (strings.Contains(
+				element,
+				"baseline power",
+			)) {
+				baseLinePower = element
+				fmt.Println(element)
+				return baseLinePower
 			}
-			//fmt.Println("+++++++++++++++++++++++++++++++++++++")
-			//fmt.Println(baseLinePower)
-			//fmt.Println("+++++++++++++++++++++++++++++++++++++")
+
 		}
 	}
-	return baseLinePower
-
+	return ""
 }
 func GetBaseLinePower(parsedLine string) float64 {
 	matches := reBLP.FindAllStringSubmatch(
