@@ -1,0 +1,1270 @@
+apiVersion: management.project-flotta.io/v1alpha1
+kind: EdgeDevice
+metadata:
+  creationTimestamp: "2022-08-26T07:36:33Z"
+  finalizers:
+  - device-finalizer
+  generation: 1
+  labels:
+    device.cpu-architecture: x86_64
+    device.cpu-model: 11thgenintelrcoretmi3-1115g43.00ghz
+    device.hostname: e2087a1c641a
+    device.system-manufacturer: lenovo
+    device.system-product: 82h8
+    device.system-serial: pf34qzsp
+    workload/alpine3-8-jgdfbjmy: "true"
+    workload/alpine3-8-repvyouo: "true"
+  name: fooa
+  namespace: default
+  resourceVersion: "88536"
+  uid: f82af6cd-aa5f-41d1-80c8-162386e87b19
+spec:
+  requestTime: "2022-08-26T07:36:33Z"
+status:
+  hardware:
+    cpu:
+      architecture: x86_64
+      flags: []
+      frequency: "0.00"
+      modelName: 11th Gen Intel(R) Core(TM) i3-1115G4 @ 3.00GHz
+    disks: []
+    gpus: []
+    hostDevices:
+    - deviceType: c
+      major: 10
+      minor: 124
+      path: /dev/acpi_thermal_rel
+    - deviceType: c
+      major: 10
+      minor: 235
+      path: /dev/autofs
+    - deviceType: c
+      group: 6
+      major: 10
+      minor: 234
+      path: /dev/btrfs-control
+    - deviceType: c
+      major: 189
+      path: /dev/bus/usb/001/001
+    - deviceType: c
+      major: 189
+      minor: 128
+      path: /dev/bus/usb/002/001
+    - deviceType: c
+      major: 189
+      minor: 256
+      path: /dev/bus/usb/003/001
+    - deviceType: c
+      major: 189
+      minor: 257
+      path: /dev/bus/usb/003/002
+    - deviceType: c
+      major: 189
+      minor: 258
+      path: /dev/bus/usb/003/003
+    - deviceType: c
+      major: 189
+      minor: 276
+      path: /dev/bus/usb/003/021
+    - deviceType: c
+      major: 189
+      minor: 384
+      path: /dev/bus/usb/004/001
+    - deviceType: c
+      major: 203
+      path: /dev/cpu/0/cpuid
+    - deviceType: c
+      major: 202
+      path: /dev/cpu/0/msr
+    - deviceType: c
+      major: 203
+      minor: 1
+      path: /dev/cpu/1/cpuid
+    - deviceType: c
+      major: 202
+      minor: 1
+      path: /dev/cpu/1/msr
+    - deviceType: c
+      major: 203
+      minor: 2
+      path: /dev/cpu/2/cpuid
+    - deviceType: c
+      major: 202
+      minor: 2
+      path: /dev/cpu/2/msr
+    - deviceType: c
+      major: 203
+      minor: 3
+      path: /dev/cpu/3/cpuid
+    - deviceType: c
+      major: 202
+      minor: 3
+      path: /dev/cpu/3/msr
+    - deviceType: c
+      major: 10
+      minor: 125
+      path: /dev/cpu_dma_latency
+    - deviceType: c
+      major: 10
+      minor: 203
+      path: /dev/cuse
+    - deviceType: c
+      major: 251
+      path: /dev/dma_heap/system
+    - deviceType: c
+      group: 39
+      major: 226
+      path: /dev/dri/card0
+    - deviceType: c
+      group: 105
+      major: 226
+      minor: 128
+      path: /dev/dri/renderD128
+    - deviceType: c
+      major: 234
+      path: /dev/drm_dp_aux0
+    - deviceType: c
+      group: 39
+      major: 29
+      path: /dev/fb0
+    - deviceType: c
+      major: 1
+      minor: 7
+      path: /dev/full
+    - deviceType: c
+      major: 10
+      minor: 229
+      path: /dev/fuse
+    - deviceType: c
+      major: 254
+      path: /dev/gpiochip0
+    - deviceType: c
+      major: 240
+      path: /dev/hidraw0
+    - deviceType: c
+      major: 240
+      minor: 1
+      path: /dev/hidraw1
+    - deviceType: c
+      major: 10
+      minor: 228
+      path: /dev/hpet
+    - deviceType: c
+      major: 10
+      minor: 183
+      path: /dev/hwrng
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 64
+      path: /dev/input/event0
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 65
+      path: /dev/input/event1
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 74
+      path: /dev/input/event10
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 75
+      path: /dev/input/event11
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 76
+      path: /dev/input/event12
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 77
+      path: /dev/input/event13
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 78
+      path: /dev/input/event14
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 66
+      path: /dev/input/event2
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 67
+      path: /dev/input/event3
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 68
+      path: /dev/input/event4
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 69
+      path: /dev/input/event5
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 70
+      path: /dev/input/event6
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 71
+      path: /dev/input/event7
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 72
+      path: /dev/input/event8
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 73
+      path: /dev/input/event9
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 63
+      path: /dev/input/mice
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 32
+      path: /dev/input/mouse0
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 33
+      path: /dev/input/mouse1
+    - deviceType: c
+      group: 104
+      major: 13
+      minor: 34
+      path: /dev/input/mouse2
+    - deviceType: c
+      major: 1
+      minor: 11
+      path: /dev/kmsg
+    - deviceType: c
+      group: 36
+      major: 10
+      minor: 232
+      path: /dev/kvm
+    - deviceType: c
+      group: 6
+      major: 10
+      minor: 237
+      path: /dev/loop-control
+    - deviceType: b
+      group: 6
+      major: 7
+      path: /dev/loop0
+    - deviceType: b
+      group: 6
+      major: 7
+      minor: 1
+      path: /dev/loop1
+    - deviceType: b
+      group: 6
+      major: 7
+      minor: 2
+      path: /dev/loop2
+    - deviceType: b
+      group: 6
+      major: 7
+      minor: 3
+      path: /dev/loop3
+    - deviceType: b
+      group: 6
+      major: 7
+      minor: 4
+      path: /dev/loop4
+    - deviceType: b
+      group: 6
+      major: 7
+      minor: 5
+      path: /dev/loop5
+    - deviceType: b
+      group: 6
+      major: 7
+      minor: 6
+      path: /dev/loop6
+    - deviceType: c
+      group: 7
+      major: 6
+      path: /dev/lp0
+    - deviceType: c
+      group: 7
+      major: 6
+      minor: 1
+      path: /dev/lp1
+    - deviceType: c
+      group: 7
+      major: 6
+      minor: 2
+      path: /dev/lp2
+    - deviceType: c
+      group: 7
+      major: 6
+      minor: 3
+      path: /dev/lp3
+    - deviceType: c
+      major: 10
+      minor: 236
+      path: /dev/mapper/control
+    - deviceType: c
+      major: 10
+      minor: 227
+      path: /dev/mcelog
+    - deviceType: c
+      group: 39
+      major: 510
+      path: /dev/media0
+    - deviceType: c
+      major: 511
+      path: /dev/mei0
+    - deviceType: c
+      group: 9
+      major: 1
+      minor: 1
+      path: /dev/mem
+    - deviceType: c
+      major: 10
+      minor: 200
+      path: /dev/net/tun
+    - deviceType: c
+      major: 235
+      path: /dev/ng0n1
+    - deviceType: c
+      major: 1
+      minor: 3
+      path: /dev/null
+    - deviceType: c
+      major: 236
+      path: /dev/nvme0
+    - deviceType: b
+      group: 6
+      major: 259
+      path: /dev/nvme0n1
+    - deviceType: b
+      group: 6
+      major: 259
+      minor: 1
+      path: /dev/nvme0n1p1
+    - deviceType: b
+      group: 6
+      major: 259
+      minor: 2
+      path: /dev/nvme0n1p2
+    - deviceType: b
+      group: 6
+      major: 259
+      minor: 3
+      path: /dev/nvme0n1p3
+    - deviceType: b
+      group: 6
+      major: 259
+      minor: 4
+      path: /dev/nvme0n1p4
+    - deviceType: b
+      group: 6
+      major: 259
+      minor: 5
+      path: /dev/nvme0n1p5
+    - deviceType: b
+      group: 6
+      major: 259
+      minor: 6
+      path: /dev/nvme0n1p6
+    - deviceType: b
+      group: 6
+      major: 259
+      minor: 7
+      path: /dev/nvme0n1p7
+    - deviceType: c
+      major: 10
+      minor: 144
+      path: /dev/nvram
+    - deviceType: c
+      group: 9
+      major: 1
+      minor: 4
+      path: /dev/port
+    - deviceType: c
+      major: 108
+      path: /dev/ppp
+    - deviceType: c
+      major: 1
+      minor: 8
+      path: /dev/random
+    - deviceType: c
+      major: 10
+      minor: 242
+      path: /dev/rfkill
+    - deviceType: c
+      major: 250
+      path: /dev/rtc0
+    - deviceType: c
+      major: 10
+      minor: 231
+      path: /dev/snapshot
+    - deviceType: c
+      group: 63
+      major: 116
+      minor: 13
+      path: /dev/snd/controlC0
+    - deviceType: c
+      group: 63
+      major: 116
+      minor: 12
+      path: /dev/snd/hwC0D0
+    - deviceType: c
+      group: 63
+      major: 116
+      minor: 11
+      path: /dev/snd/hwC0D2
+    - deviceType: c
+      group: 63
+      major: 116
+      minor: 5
+      path: /dev/snd/pcmC0D0c
+    - deviceType: c
+      group: 63
+      major: 116
+      minor: 4
+      path: /dev/snd/pcmC0D0p
+    - deviceType: c
+      group: 63
+      major: 116
+      minor: 7
+      path: /dev/snd/pcmC0D1c
+    - deviceType: c
+      group: 63
+      major: 116
+      minor: 6
+      path: /dev/snd/pcmC0D1p
+    - deviceType: c
+      group: 63
+      major: 116
+      minor: 8
+      path: /dev/snd/pcmC0D3p
+    - deviceType: c
+      group: 63
+      major: 116
+      minor: 9
+      path: /dev/snd/pcmC0D4p
+    - deviceType: c
+      group: 63
+      major: 116
+      minor: 10
+      path: /dev/snd/pcmC0D5p
+    - deviceType: c
+      group: 63
+      major: 116
+      minor: 2
+      path: /dev/snd/pcmC0D6c
+    - deviceType: c
+      group: 63
+      major: 116
+      minor: 3
+      path: /dev/snd/pcmC0D7c
+    - deviceType: c
+      group: 63
+      major: 116
+      minor: 1
+      path: /dev/snd/seq
+    - deviceType: c
+      group: 63
+      major: 116
+      minor: 33
+      path: /dev/snd/timer
+    - deviceType: c
+      major: 10
+      minor: 224
+      owner: 59
+      path: /dev/tpm0
+    - deviceType: c
+      group: 59
+      major: 253
+      minor: 65536
+      owner: 59
+      path: /dev/tpmrm0
+    - deviceType: c
+      group: 5
+      major: 5
+      path: /dev/tty
+    - deviceType: c
+      group: 5
+      major: 4
+      path: /dev/tty0
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 1
+      path: /dev/tty1
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 10
+      path: /dev/tty10
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 11
+      path: /dev/tty11
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 12
+      path: /dev/tty12
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 13
+      path: /dev/tty13
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 14
+      path: /dev/tty14
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 15
+      path: /dev/tty15
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 16
+      path: /dev/tty16
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 17
+      path: /dev/tty17
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 18
+      path: /dev/tty18
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 19
+      path: /dev/tty19
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 2
+      owner: 1000
+      path: /dev/tty2
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 20
+      path: /dev/tty20
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 21
+      path: /dev/tty21
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 22
+      path: /dev/tty22
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 23
+      path: /dev/tty23
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 24
+      path: /dev/tty24
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 25
+      path: /dev/tty25
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 26
+      path: /dev/tty26
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 27
+      path: /dev/tty27
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 28
+      path: /dev/tty28
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 29
+      path: /dev/tty29
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 3
+      path: /dev/tty3
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 30
+      path: /dev/tty30
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 31
+      path: /dev/tty31
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 32
+      path: /dev/tty32
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 33
+      path: /dev/tty33
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 34
+      path: /dev/tty34
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 35
+      path: /dev/tty35
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 36
+      path: /dev/tty36
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 37
+      path: /dev/tty37
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 38
+      path: /dev/tty38
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 39
+      path: /dev/tty39
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 4
+      path: /dev/tty4
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 40
+      path: /dev/tty40
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 41
+      path: /dev/tty41
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 42
+      path: /dev/tty42
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 43
+      path: /dev/tty43
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 44
+      path: /dev/tty44
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 45
+      path: /dev/tty45
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 46
+      path: /dev/tty46
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 47
+      path: /dev/tty47
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 48
+      path: /dev/tty48
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 49
+      path: /dev/tty49
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 5
+      path: /dev/tty5
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 50
+      path: /dev/tty50
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 51
+      path: /dev/tty51
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 52
+      path: /dev/tty52
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 53
+      path: /dev/tty53
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 54
+      path: /dev/tty54
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 55
+      path: /dev/tty55
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 56
+      path: /dev/tty56
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 57
+      path: /dev/tty57
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 58
+      path: /dev/tty58
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 59
+      path: /dev/tty59
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 6
+      path: /dev/tty6
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 60
+      path: /dev/tty60
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 61
+      path: /dev/tty61
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 62
+      path: /dev/tty62
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 63
+      path: /dev/tty63
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 7
+      path: /dev/tty7
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 8
+      path: /dev/tty8
+    - deviceType: c
+      group: 5
+      major: 4
+      minor: 9
+      path: /dev/tty9
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 64
+      path: /dev/ttyS0
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 65
+      path: /dev/ttyS1
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 74
+      path: /dev/ttyS10
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 75
+      path: /dev/ttyS11
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 76
+      path: /dev/ttyS12
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 77
+      path: /dev/ttyS13
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 78
+      path: /dev/ttyS14
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 79
+      path: /dev/ttyS15
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 80
+      path: /dev/ttyS16
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 81
+      path: /dev/ttyS17
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 82
+      path: /dev/ttyS18
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 83
+      path: /dev/ttyS19
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 66
+      path: /dev/ttyS2
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 84
+      path: /dev/ttyS20
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 85
+      path: /dev/ttyS21
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 86
+      path: /dev/ttyS22
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 87
+      path: /dev/ttyS23
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 88
+      path: /dev/ttyS24
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 89
+      path: /dev/ttyS25
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 90
+      path: /dev/ttyS26
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 91
+      path: /dev/ttyS27
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 92
+      path: /dev/ttyS28
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 93
+      path: /dev/ttyS29
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 67
+      path: /dev/ttyS3
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 94
+      path: /dev/ttyS30
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 95
+      path: /dev/ttyS31
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 68
+      path: /dev/ttyS4
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 69
+      path: /dev/ttyS5
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 70
+      path: /dev/ttyS6
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 71
+      path: /dev/ttyS7
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 72
+      path: /dev/ttyS8
+    - deviceType: c
+      group: 18
+      major: 4
+      minor: 73
+      path: /dev/ttyS9
+    - deviceType: c
+      group: 36
+      major: 10
+      minor: 126
+      path: /dev/udmabuf
+    - deviceType: c
+      major: 10
+      minor: 239
+      path: /dev/uhid
+    - deviceType: c
+      major: 10
+      minor: 223
+      path: /dev/uinput
+    - deviceType: c
+      major: 1
+      minor: 9
+      path: /dev/urandom
+    - deviceType: c
+      major: 242
+      path: /dev/usbmon0
+    - deviceType: c
+      major: 242
+      minor: 1
+      path: /dev/usbmon1
+    - deviceType: c
+      major: 242
+      minor: 2
+      path: /dev/usbmon2
+    - deviceType: c
+      major: 242
+      minor: 3
+      path: /dev/usbmon3
+    - deviceType: c
+      major: 242
+      minor: 4
+      path: /dev/usbmon4
+    - deviceType: c
+      group: 5
+      major: 7
+      path: /dev/vcs
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 1
+      path: /dev/vcs1
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 2
+      path: /dev/vcs2
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 3
+      path: /dev/vcs3
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 4
+      path: /dev/vcs4
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 5
+      path: /dev/vcs5
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 6
+      path: /dev/vcs6
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 128
+      path: /dev/vcsa
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 129
+      path: /dev/vcsa1
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 130
+      path: /dev/vcsa2
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 131
+      path: /dev/vcsa3
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 132
+      path: /dev/vcsa4
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 133
+      path: /dev/vcsa5
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 134
+      path: /dev/vcsa6
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 64
+      path: /dev/vcsu
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 65
+      path: /dev/vcsu1
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 66
+      path: /dev/vcsu2
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 67
+      path: /dev/vcsu3
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 68
+      path: /dev/vcsu4
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 69
+      path: /dev/vcsu5
+    - deviceType: c
+      group: 5
+      major: 7
+      minor: 70
+      path: /dev/vcsu6
+    - deviceType: c
+      major: 10
+      minor: 196
+      path: /dev/vfio/vfio
+    - deviceType: c
+      major: 10
+      minor: 127
+      path: /dev/vga_arbiter
+    - deviceType: c
+      major: 10
+      minor: 137
+      path: /dev/vhci
+    - deviceType: c
+      group: 36
+      major: 10
+      minor: 238
+      path: /dev/vhost-net
+    - deviceType: c
+      group: 36
+      major: 10
+      minor: 241
+      path: /dev/vhost-vsock
+    - deviceType: c
+      group: 39
+      major: 81
+      path: /dev/video0
+    - deviceType: c
+      group: 39
+      major: 81
+      minor: 1
+      path: /dev/video1
+    - deviceType: c
+      major: 10
+      minor: 130
+      path: /dev/watchdog
+    - deviceType: c
+      major: 246
+      path: /dev/watchdog0
+    - deviceType: c
+      major: 1
+      minor: 5
+      path: /dev/zero
+    - deviceType: b
+      group: 6
+      major: 252
+      path: /dev/zram0
+    hostname: e2087a1c641a
+    interfaces: []
+    mounts:
+    - device: /dev/nvme0n1p6
+      folder: /
+      options: (rw,relatime,compress=zstd:1,ssd,space_cache,subvolid=2591,subvol=/root/var/lib/docker/btrfs/subvolumes/efa33f14908be008c8f7fdaf907104f331348cd9c00c1494b42cdbc806688c45)
+      type: btrfs
+    - device: proc
+      folder: /proc
+      options: (rw,nosuid,nodev,noexec,relatime)
+      type: proc
+    - device: tmpfs
+      folder: /dev
+      options: (rw,nosuid,size=65536k,mode=755,inode64)
+      type: tmpfs
+    - device: devpts
+      folder: /dev/pts
+      options: (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=666)
+      type: devpts
+    - device: sysfs
+      folder: /sys
+      options: (rw,nosuid,nodev,noexec,relatime)
+      type: sysfs
+    - device: cgroup
+      folder: /sys/fs/cgroup
+      options: (rw,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot)
+      type: cgroup2
+    - device: mqueue
+      folder: /dev/mqueue
+      options: (rw,nosuid,nodev,noexec,relatime)
+      type: mqueue
+    - device: shm
+      folder: /dev/shm
+      options: (rw,nosuid,nodev,noexec,relatime,size=65536k,inode64)
+      type: tmpfs
+    - device: /dev/nvme0n1p6
+      folder: /etc/resolv.conf
+      options: (rw,relatime,compress=zstd:1,ssd,space_cache,subvolid=256,subvol=/root)
+      type: btrfs
+    - device: /dev/nvme0n1p6
+      folder: /etc/hostname
+      options: (rw,relatime,compress=zstd:1,ssd,space_cache,subvolid=256,subvol=/root)
+      type: btrfs
+    - device: /dev/nvme0n1p6
+      folder: /etc/hosts
+      options: (rw,relatime,compress=zstd:1,ssd,space_cache,subvolid=256,subvol=/root)
+      type: btrfs
+    - device: /dev/nvme0n1p6
+      folder: /var/lib/containers
+      options: (rw,relatime,compress=zstd:1,ssd,space_cache,subvolid=256,subvol=/root)
+      type: btrfs
+    - device: /dev/nvme0n1p6
+      folder: /home/podman/.local/share/containers
+      options: (rw,relatime,compress=zstd:1,ssd,space_cache,subvolid=256,subvol=/root)
+      type: btrfs
+    - device: tmpfs
+      folder: /run
+      options: (rw,nosuid,nodev,size=1566484k,nr_inodes=819200,mode=755,inode64)
+      type: tmpfs
+    - device: debugfs
+      folder: /sys/kernel/debug
+      options: (rw,nosuid,nodev,noexec,relatime)
+      type: debugfs
+    - device: tmpfs
+      folder: /tmp
+      options: (rw,nosuid,nodev,size=3916212k,nr_inodes=1048576,inode64)
+      type: tmpfs
+    - device: hugetlbfs
+      folder: /dev/hugepages
+      options: (rw,relatime,pagesize=2M)
+      type: hugetlbfs
+    - device: tracefs
+      folder: /sys/kernel/tracing
+      options: (rw,nosuid,nodev,noexec,relatime)
+      type: tracefs
+    - device: configfs
+      folder: /sys/kernel/config
+      options: (rw,nosuid,nodev,noexec,relatime)
+      type: configfs
+    - device: fusectl
+      folder: /sys/fs/fuse/connections
+      options: (rw,nosuid,nodev,noexec,relatime)
+      type: fusectl
+    - device: tmpfs
+      folder: /run/user/1001
+      options: (rw,nosuid,nodev,relatime,size=783240k,nr_inodes=195810,mode=700,uid=1001,gid=1001,inode64)
+      type: tmpfs
+    systemVendor:
+      manufacturer: LENOVO
+      productName: 82H8
+      serialNumber: PF34QZSP
+  lastSyncedResourceVersion: "88417"
+  phase: up
+  upgradeInformation:
+    currentCommitID: unknown
+  workloads:
+  - lastTransitionTime: "2022-08-26T07:40:46Z"
+    name: alpine3-8-repvyouo
+    phase: Degraded
+  - lastTransitionTime: "2022-08-26T07:42:46Z"
+    name: alpine3-8-jgdfbjmy
+    phase: Degraded
