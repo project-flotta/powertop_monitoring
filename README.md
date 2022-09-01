@@ -10,20 +10,31 @@ For PowerTop to work in Edge Devices easily , this a image was to be required , 
 <h3>Local SetUp</h3>
 <h4>Pre-requisite</h4>
 <ol>
-   <li>Linux Environment<ul>
-  </ul></li>
-  <li><a href="https://docs.docker.com/compose/install/">Docker Compose </a><ul>
-  </ul></li>
-  <li><a href="https://podman.io/getting-started/installation.html#installing-on-linux">Podman</a><ul>
-  </ul></li>
+   <li>Linux Environment for running without container<ul>
 </ol>
 
 
 <h3>Dev SetUp</h3>
 
+for this powertop is needed to be pre installed
+
 open up a terminal
 
-Restart podman  <code>sudo systemctl restart podman</code>   
-Enter the folder  <code>cd powertop_monitoring</code>  
-Run using Go , requires super user priviledge  <code>sudo go run ./main.go</code>  
-Check the metrics using curl   <code>curl http://localhost:8886/metrics</code>  
+1. clone the repo 
+
+2. go in the folder <code>cd powertop_monitoring</code>  
+
+3. run using go compiler <code>sudo go run cmd/main.go</code>  
+   powertop requires sudo permission to access the system stats
+
+4.bare prometheus metrics can be seen using <code>curl 0.0.0.0:8887/metrics</code>
+
+<h3>Running Using Docker</h3>
+
+1.for this you used need --priviledge flag , which would give it access to host energy stats
+    <code> docker run -p 8887:8887--privileged powertopcsv:v2</code>  
+2.bare prometheus metrics can be seen using <code> curl 0.0.0.0:8887/metrics</code>  
+
+These can be run with graphana and prometheus easily with the docker compose file
+
+
