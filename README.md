@@ -39,9 +39,13 @@ These can be run with graphana and prometheus easily with the docker compose fil
 
 <h3>Monitoring with Graphana and Prometheus using docker compose </h3>
 1. open up a terminal in the same directory <code>docker-compose up</code>    
-2.Open your favourite brower with localhost:3000 , it will open up Graphana, login with username and password both as <code>admin</admin>
 
-3. Go to configuration ->Data sources -> Add Prometheus -> set Http as <code>http://prometheus:9090</code> 
+2.Open your favourite brower with localhost:3000 , it will open up Graphana, login with username and password both as <code>admin</code>  
+
+3. Go to configuration ->Data sources -> Add Prometheus -> set Http as <code>http://prometheus:9090</code>  
+ 
 4.Go to create -> Dashboard -> Select one
-5. Add powertop_wakeup_count , powertop_baseline_power,powertop_tunable_count,powertop_cpu_usage
-6 . Now you can see clearly the parameters of your system calculated !!
+
+5. Add powertop_wakeup_count , powertop_baseline_power,powertop_tunable_count,powertop_cpu_usage  
+
+6 . Now you can see clearly the parameters of your system calculated !!  
