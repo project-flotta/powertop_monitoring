@@ -169,21 +169,24 @@ func powerTopStart(done chan bool, ticker *time.Ticker, ptWakeupCount prometheus
 			fmt.Println(file.Name())
 			cmd := exec.Command(
 				"powertop",
-				//"--debug",
+				"--debug",
 				"--csv="+file.Name(),
 				"--time=1",
 			)
 			out, err := cmd.Output()
+			fmt.Println("to")
 			if err != nil {
 				log.Printf(
 					"%v",
 					err,
 				)
 			}
+			fmt.Println("****************")
 			fmt.Printf(
 				"%s",
 				out,
 			)
+			fmt.Println("****************")
 			fmt.Println("opening file")
 			data, err := stats.ReadCSV(file.Name())
 			fmt.Println("opened")
