@@ -22,4 +22,4 @@ scrape_configs:
     scrape_interval: 10s
     static_configs:
       - targets:
-          - go-service-with-metrics:8080
+          - powertopcsv:8887

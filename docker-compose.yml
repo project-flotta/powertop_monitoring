@@ -11,12 +11,13 @@ services:
     ports:
       - 9090:9090
     depends_on:
-      - go-service-with-metrics
+      - powertopcsv
 
-  go-service-with-metrics:
+  powertopcsv:
     build: .
     ports:
-      - 8080:8080
+      - 8887:8887
+    privileged: true
 
   grafana:
     image: grafana/grafana:latest
