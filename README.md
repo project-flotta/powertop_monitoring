@@ -27,13 +27,13 @@ open up a terminal
 3. run using go compiler <code>sudo go run cmd/main.go</code>  
    powertop requires sudo permission to access the system stats
 
-4.bare prometheus metrics can be seen using <code>curl 0.0.0.0:8887/metrics</code>
+4. bare prometheus metrics can be seen using <code>curl 0.0.0.0:8887/metrics</code>
 
 <h3>Running Using Docker</h3>
 
-1.for this you used need --priviledge flag , which would give it access to host energy stats
+1. for this you used need --priviledge flag , which would give it access to host energy stats
     <code> docker run -d -p 8887:8887 --privileged sibseh/powertopcsv:v2</code>  
-2.bare prometheus metrics can be seen using <code> curl 0.0.0.0:8887/metrics |grep powertop</code>  
+2. bare prometheus metrics can be seen using <code> curl 0.0.0.0:8887/metrics |grep powertop</code>  
 
 These can be run with graphana and prometheus easily with the docker compose file
 
@@ -41,11 +41,11 @@ These can be run with graphana and prometheus easily with the docker compose fil
 
 1. Open up a terminal in the same directory <code>docker-compose up</code>  
 
- 2.Open your favourite brower with localhost:3000 , it will open up Graphana, login with username and password both as <code>admin</code>  
+ 2. Open your favourite brower with localhost:3000 , it will open up Graphana, login with username and password both as <code>admin</code>  
 
 3. Go to configuration ->Data sources -> Add Prometheus -> set Http as <code>http://prometheus:9090</code>
  
- 4.Go to create -> Dashboard -> Select one
+ 4. Go to create -> Dashboard -> Select one
 
 5. Add powertop_wakeup_count , powertop_baseline_power,powertop_tunable_count,powertop_cpu_usage  
 
