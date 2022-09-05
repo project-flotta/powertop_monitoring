@@ -31,9 +31,7 @@ var (
 		"metrics path",
 	)
 	sysInfo stats.SysInfo
-	//mountpoint string
 	data          [][]string
-	_             sync.Mutex
 	baseLinePower float64
 	tunNum        uint32
 )
@@ -200,8 +198,7 @@ func powerTopStart(done chan bool, ticker *time.Ticker, ptWakeupCount prometheus
 			// parse_csv_and_publish(path)
 			sysInfo, baseLinePower, tunNum := ParseData(data)
 
-			//publish
-			////Fetch wakeup data
+			//Fetch wakeup data
 			if sysInfo.Wakeups != 0 {
 				ptWakeupCount.Set(sysInfo.Wakeups)
 			}
@@ -241,8 +238,6 @@ func ParseData(data [][]string) (stats.SysInfo, float64, uint32) {
 	baseLineData := stats.ParseBaseLinePower(data)
 	parsedTuned := stats.ParseTunables(data)
 	tunNum = stats.GeNumOfTunables(parsedTuned)
-	//print tunable logs in console
-	//stats.TunableLogs(parsedTuned)
 	if baseLineData != "" {
 		baseLinePower = stats.GetBaseLinePower(baseLineData)
 	}
