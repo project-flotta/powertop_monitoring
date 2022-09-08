@@ -14,12 +14,11 @@ follow the flotta guide
 
 [flotta-dev-cli](https://project-flotta.io/flotta/2022/07/20/developer-cli.html)
 
+<h3>Deploying PowerTop Workload</h3>
 
-
-The powertop monitoring application would be deployed as workloads
-
-details on deploying workloads are in 
-[workloads deployment](https://project-flotta.io/documentation/v0_2_0/gsg/running_workloads.html)
+The powertop monitoring application would be deployed as workloads.
+Details on how to deploying workloads are in 
+[flotta workloads deployment](https://project-flotta.io/documentation/v0_2_0/gsg/running_workloads.html)
 
 The yaml for the workload  :-
 
@@ -73,9 +72,9 @@ spec:
 For checking metrics inside the workload 
 A thanos and graphana set up can be used for monitoring visually 
 
-More details can be found here
+More details can be found in :-
 
-[observability](https://project-flotta.io/documentation/latest/operations/observability.html)
+[flotta observability](https://project-flotta.io/documentation/latest/operations/observability.html)
 
 [writing-metrics-to-control-plane](https://project-flotta.io/flotta/2022/04/11/writing-metrics-to-control-plane.html
 )
