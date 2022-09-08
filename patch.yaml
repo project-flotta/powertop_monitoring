@@ -1,0 +1,7 @@
+  metrics:
+    receiverConfiguration:
+      requestNumSamples: 1
+      timeoutSeconds: 30
+      url: http://172.17.0.1:10908/api/v1/receive
+    system:
+      interval: 5

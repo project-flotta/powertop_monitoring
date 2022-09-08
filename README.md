@@ -1,5 +1,5 @@
 <h1>PowerTop Monitoring</h1>
-<h3>Using Prometheus and Graphana</h3>
+
 
 <p>PowerTOP is a terminal-based diagnosis tool that helps you to monitor power usage by programs running on a Linux system when it is not plugged on to a power source , which makes it suitable for unreliable power sources
 For PowerTop to work in Edge Devices easily , this a image was to be required , which is build with help of Docker image and is available at <a href="https://hub.docker.com/">DockerHub registry</a>. </p>
@@ -7,56 +7,201 @@ For PowerTop to work in Edge Devices easily , this a image was to be required , 
 
 <p>While running thousands of application in edge devices the monitoring and optimisation of power consumption is crucial </p>
 
-<h3>Local SetUp</h3>
-<h4>Pre-requisite</h4>
-<ol>
-   <li>Linux Environment for running without container<ul>
-</ol>
+For installation of flotta-operator and flotta-edge device  
+follow the flotta guide
+
+[kind installation](https://project-flotta.io/documentation/v0_2_0/gsg/kind.html)
+
+[flotta-dev-cli](https://project-flotta.io/flotta/2022/07/20/developer-cli.html)
 
 
-<h3>Dev SetUp</h3>
 
-for this powertop is needed to be pre installed
+The powertop monitoring application would be deployed as workloads
 
-open up a terminal
+details on deploying workloads are in 
+[workloads deployment](https://project-flotta.io/documentation/v0_2_0/gsg/running_workloads.html)
 
-1. clone the repo 
+The yaml for the workload  :-
 
-2. go in the folder <code>cd powertop_monitoring</code>  
+```yaml
+apiVersion: management.project-flotta.io/v1alpha1
+kind: EdgeWorkload
+metadata:
+  name: powertop
+spec:
+  metrics:
+    interval: 5
+    path: "/metrics"
+    port: 8887
+  deviceSelector:
+    matchLabels:
+      app: foo
+  type: pod
+  pod:
+    spec:
+      containers:
+        - name: powertop
+          image: docker.io/sibseh/powertopcsv:v2
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - mountPath: /lib/modules
+              name: lib-modules
+            - mountPath: /sys/kernel/
+              name: tracing
+            - mountPath: /usr/src/
+              name: usr
+          ports :
+            - containerPort: 8887
+              hostPort: 8887
+      volumes:
+        - hostPath:
+          path: /lib/modules
+          type: Directory
+          name: lib-modules
+        - hostPath:
+          path: /sys/kernel
+          type: Directory
+          name: tracing
+        - hostPath:
+          path: /usr/src/
+          type: Directory
+          name: usr
+```
 
-3. run using go compiler <code>sudo go run cmd/main.go</code>  
-   powertop requires sudo permission to access the system stats
 
-4. bare prometheus metrics can be seen using <code>curl 0.0.0.0:8887/metrics</code>
+For checking metrics inside the workload 
+A thanos and graphana set up can be used for monitoring visually 
 
-<h3>Running Using Docker</h3>
+More details can be found here
 
-1. for this you used need --priviledge flag , which would give it access to host energy stats
-    <code> docker run -d -p 8887:8887 --privileged sibseh/powertopcsv:v2</code>  
-2. bare prometheus metrics can be seen using <code> curl 0.0.0.0:8887/metrics |grep powertop</code>  
+[observability](https://project-flotta.io/documentation/latest/operations/observability.html)
 
-These can be run with graphana and prometheus easily with the docker compose file
-
-<h3>Monitoring with Graphana and Prometheus using docker compose </h3>
-
-1. Open up a terminal in the same directory <code>docker-compose up</code>  
-
- 2. Open your favourite brower with localhost:3000 , it will open up Graphana, login with username and password both as <code>admin</code>  
-
-3. Go to configuration ->Data sources -> Add Prometheus -> set Http as <code>http://prometheus:9090</code>
- 
- 4. Go to create -> Dashboard -> Select one
-
-5. Add powertop_wakeup_count , powertop_baseline_power,powertop_tunable_count,powertop_cpu_usage  
-
-6 . Now you can see clearly the parameters of your system calculated !!  
+[writing-metrics-to-control-plane](https://project-flotta.io/flotta/2022/04/11/writing-metrics-to-control-plane.html
+)
 
 
-The final set up should look like this
-![Screenshot from 2022-09-02 05-41-50](https://user-images.githubusercontent.com/95071627/187992443-a1e15061-577f-408c-a9ba-ad520a47cbb9.png)
+For Thanos receiver
+
+```yaml
+---
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: thanos-receiver
+  labels:
+    app: thanos-receiver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: thanos-receiver
+  template:
+    metadata:
+      labels:
+        app: thanos-receiver
+    spec:
+      containers:
+        - name: receive
+          image: quay.io/thanos/thanos:v0.24.0
+          command:
+            - /bin/thanos
+            - receive
+            - --log.level
+            - debug
+            - --label
+            - "receiver=\"0\""
+            - --remote-write.address
+            - 0.0.0.0:10908
+        - name: query
+          image: quay.io/thanos/thanos:v0.24.0
+          command:
+            - /bin/thanos
+            - query
+            - --log.level
+            - debug
+            - --http-address
+            - 0.0.0.0:9090
+            - --grpc-address
+            - 0.0.0.0:11901
+            - --endpoint
+            - 127.0.0.1:10901
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: thanos-receiver
+spec:
+  type: NodePort
+  selector:
+    app: thanos-receiver
+  ports:
+    - port: 80
+      targetPort: 10908
+      nodePort: 30030
+      name: endpoint
+    - port: 9090
+      targetPort: 9090
+      name: admin
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: thanos-receiver
+spec:
+  type: NodePort
+  selector:
+    app: thanos-receiver
+  ports:
+    - port: 80
+      targetPort: 10908
+      nodePort: 30030
+      name: endpoint
+    - port: 9090
+      targetPort: 9090
+      name: admin
+
+```
 
 
-Viewing powertop_baseline_power variation
+For graphana
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      name: grafana
+      labels:
+        app: grafana
+    spec:
+      containers:
+        - name: grafana
+          image: grafana/grafana:latest
+          ports:
+            - name: grafana
+              containerPort: 3000
+          resources:
+            limits:
+              memory: "1Gi"
+              cpu: "1000m"
+            requests:
+              memory: 500M
+              cpu: "500m"
+          volumeMounts:
+            - mountPath: /var/lib/grafana
+              name: grafana-storage
+      volumes:
+        - name: grafana-storage
+
 
 
 
