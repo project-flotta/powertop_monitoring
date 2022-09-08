@@ -68,8 +68,8 @@ spec:
           name: usr
 ```
 
+<h3>Monitoring Using Thanos</h3>
 
-For checking metrics inside the workload 
 A thanos and graphana set up can be used for monitoring visually 
 
 More details can be found in :-
@@ -80,7 +80,7 @@ More details can be found in :-
 )
 
 
-For Thanos receiver
+For Thanos receiver 
 
 ```yaml
 ---
@@ -165,7 +165,7 @@ spec:
 ```
 
 
-For graphana
+For Graphana
 ```yaml
 apiVersion: apps/v1
 kind: Deployment

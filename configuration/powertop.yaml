@@ -1,0 +1,43 @@
+apiVersion: management.project-flotta.io/v1alpha1
+kind: EdgeWorkload
+metadata:
+  name: powertop
+spec:
+  metrics:
+    interval: 5
+    path: "/metrics"
+    port: 8887
+  deviceSelector:
+    matchLabels:
+      app: foo
+  type: pod
+  pod:
+    spec:
+      containers:
+        - name: powertop
+          image: docker.io/sibseh/powertopcsv:v2
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - mountPath: /lib/modules
+              name: lib-modules
+            - mountPath: /sys/kernel/
+              name: tracing
+            - mountPath: /usr/src/
+              name: usr
+          ports :
+            - containerPort: 8887
+              hostPort: 8887
+      volumes:
+        - hostPath:
+          path: /lib/modules
+          type: Directory
+          name: lib-modules
+        - hostPath:
+          path: /sys/kernel
+          type: Directory
+          name: tracing
+        - hostPath:
+          path: /usr/src/
+          type: Directory
+          name: usr
