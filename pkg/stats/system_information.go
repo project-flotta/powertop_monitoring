@@ -15,9 +15,6 @@ const (
 type SysInfo struct {
 	Wakeups  float64
 	CpuUsage float64
-	//gpuOperation float64
-	//gfx          float64
-	//vfs          float64
 }
 
 var (
@@ -27,20 +24,6 @@ var (
 )
 
 func (sys_info SysInfo) ParseSysInfo(data [][]string) SysInfo {
-	//k := 0
-	//for _, line := range data {
-	//	k++
-	//	if strings.Contains(
-	//		line[0],
-	//		" *  *  *   Top 10 Power Consumers   *  *  *",
-	//	) {
-	//		wake_up = data[k-3][1]
-	//		cpu_usage = data[k-3][2]
-	//		fmt.Println(wake_up)
-	//		fmt.Println(cpu_usage)
-	//		break
-	//	}
-	//}
 	for _, line := range data {
 		for _, element := range line {
 			if strings.Contains(
@@ -61,7 +44,6 @@ func (sys_info SysInfo) ParseSysInfo(data [][]string) SysInfo {
 			}
 		}
 	}
-	//fmt.Println("re starting +++++++++++++++++++++++++++++++++++++++++++++++++")
 	reWakeUPInfo := regexp.MustCompile(re_wakeup_info)
 	reCpuInfo := regexp.MustCompile(re_cpu_usage_info)
 
@@ -79,11 +61,6 @@ func (sys_info SysInfo) ParseSysInfo(data [][]string) SysInfo {
 	if len(matches2) != 0 {
 		cpu_usage = matches2[0][1]
 	}
-
-	//fmt.Println("&**&&*&*&&&*&&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*")
-	//fmt.Println(wakeUpInfo)
-	//fmt.Println(cpuInfo)
-	//fmt.Println("&**&&*&*&&&*&&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*")
 	sys_info.CpuUsage, _ = strconv.ParseFloat(
 		wake_up,
 		8,
@@ -97,21 +74,10 @@ func (sys_info SysInfo) ParseSysInfo(data [][]string) SysInfo {
 
 }
 
-//func SetSysInfo(data []string) SysInfo {
-//	sys_info.wakeups, _ = strconv.ParseFloat(data[0], 8)
-//	sys_info.cpuUsage, _ = strconv.ParseFloat(data[0], 8)
-//
-//	return sys_info
-//}
-
 func (sys_info SysInfo) GetWakeUpData() float64 {
-	//fmt.Println("##############################")
-	//fmt.Println(sys_info.CpuUsage)
-	//fmt.Println(sys_info.Wakeups)
-	//fmt.Println("##############################")
-
 	return sys_info.Wakeups
 }
+
 func (sys_info SysInfo) GetCpuUsageData() float64 {
 	return sys_info.CpuUsage
 }
