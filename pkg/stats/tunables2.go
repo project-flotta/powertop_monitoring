@@ -40,10 +40,6 @@ func ParseTunables(data [][]string) []string {
 //get number of tunables
 func GeNumOfTunables(data []string) uint32 {
 	length := uint32(len(data))
-	//fmt.Printf(
-	//	"the length is : %v",
-	//	length,
-	//)
 	return length
 }
 
