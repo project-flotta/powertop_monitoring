@@ -84,7 +84,6 @@ For Thanos receiver
 
 ```yaml
 ---
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -201,6 +200,8 @@ spec:
       volumes:
         - name: grafana-storage
 
+---
 
+View the complete the documentation [here](https://docs.google.com/document/d/1COQ66hhWg9gm_kQUjO1IGN5ERfKr-3eXLq5dcOhR1yY/edit?usp=sharing)
 
 
